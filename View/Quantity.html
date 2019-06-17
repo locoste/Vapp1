@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/vApp.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+  <body>
+    <div ng-app="Project" ng-controller="Quantity">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2">
+            <div style="width: 180px; height: 140px;">
+              <img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
+              <img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
+            </div>
+          </div>
+          <div class="col-lg-8" style="text-align: center">
+            <h1><big><big>Quantity</big></big></h1>
+            <img alt="H2020_head" src="./images/bandeau.jpg">
+        </div>
+        <div class="col-lg-2">
+          <div class="row">
+            <div class="col-lg-12">
+              <a href="UserPage.html?{{User}}">{{User}}
+              <img alt="user" src="./images/user.jpg" style="width: 50px; height: 50px;"></a>
+            </div>
+            <div class="col-lg-12">
+              <img alt="message" src="./images/message.jpg" style="width: 50px; height: 50px;">
+              <a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
+              <a href="/login.html" ng-click="logout()"><img alt="logout" src="./images/signout.jpg" style="width: 50px; height: 50px;"></a>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <p><big><big></big></big></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2" style="border: 2px solid black; border-radius: 6px;"> 
+            <legend> Menu </legend>
+            <div class="row">
+              <div><a id="buttonSave" ng-click="closeWindow()">
+                <div class="col-lg-12">
+                  <img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
+                  <big>Back</big>
+                </div>
+              </a></div>
+            </div>
+          </div>
+          <div class="col-lg-10">
+              <div class="lg-col-4">
+                <label for="Quantity" style="font-weight: bold">Quantity:</label>
+                <input id="Quantity" type="number" class="form-control" ng-model="quantity" onchange="angular.element(this).scope().lotSize()">
+              </div>
+              <div class="lg-col-4">
+                <label for="Nbr Of Lot" style="font-weight: bold">Nbr Of Lot:</label>
+                <input id="Nbr Of Lot" type="number" class="form-control" ng-model="nbr_of_lot" onchange="angular.element(this).scope().lotSize()">
+              </div>
+              <div class="lg-col-4">
+                <label for="Lot Size" style="font-weight: bold">Lot Size: </label> {{lot_size}}
+              </div>
+              <div class="lg-col-12">
+                <label for="Default Label" style="font-weight: bold">Comments:</label>
+                <input id="Default Label" type="text" class="form-control" ng-model="default_label">
+              </div>
+              <button ng-click="AddQuantity()">Add</button>
+               <table class="col-lg-8">
+                <tbody style="text-align: center;">
+                  <tr style="font-weight: bold; font-size: 15pt">
+                    <td></td><td>Quantity</td><td>Lot Size</td><td>Nbr Of Lot</td><td>Comments</td>
+                  </tr>
+                  <tr ng-repeat="x in displayQuantity">
+                    <td type="hidden">{{quantity_id}}</td>
+                    <td>{{x.quantity}}</td>
+                    <td>{{x.lot_size}}</td>
+                    <td>{{x.number_of_lot}}</td>
+                    <td>{{x.default_label}}</td>
+                    <td><button ng-click="deleteQuantity({{x.quantity_id}})">Delete</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-lg-12" style="text-align: right;">
+              Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="./controller/Project.js"></script>
+  <script src="./controller/Quantity.controller.js"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "odbcModel",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "sqlRequest": {
+      "type": "string",
+      "required": true,
+      "example": "select * from test"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ebe Arm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  </head>
+  <body>
+    <script src="js/three.js"></script>
+    <script src="js/STLLoader.js"></script>
+    <script src="js/Detector.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/handLoader.js"></script>
+    <script type="text/javascript">var loader = new THREE.STLLoader();
+     var fichier = getProject();
+   loader.load( 'https://159.84.143.246:8243/3dscan/v1/Fitman3DImages/'+fichier, function ( geometry ) {
+     scene.add( new THREE.Mesh( geometry ) );
+   });
+
+     function getProject()
+    {
+      var str = window.location.search;
+      str = str.substr(1);
+      return str;
+    }
+   </script>
+  </body>
+</html>

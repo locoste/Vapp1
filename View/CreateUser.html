@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/vApp.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  </head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+<body>
+<div ng-app="Project">
+	<div ng-controller="NewUser">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-2">
+				<div style="width: 180px; height: 140px;">
+					<img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
+					<img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
+				</div>
+			</div>
+			<div class="col-lg-8" style="text-align: center">
+				<h1><big><big>Create User</big></big></h1>
+				<img alt="H2020_head" src="./images/bandeau.jpg">
+			</div>
+			<div class="col-lg-2">
+				<div class="row">
+					<div class="col-lg-12">
+						{{User}}
+						<img alt="user" src="./images/user.jpg" style="width: 50px; height: 50px;">
+					</div>
+					<div class="col-lg-12">
+						<img alt="message" src="./images/message.jpg" style="width: 50px; height: 50px;">
+						<a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
+						<img alt="logout" src="./images/signout.jpg" style="width: 50px; height: 50px;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p><big><big></big></big></p>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-offset-1 col-lg-2" style="border: 2px solid black; border-radius: 6px;">	
+				<legend> Menu </legend>
+				<div class="row">
+					<div><a href="login.html">
+						<div class="col-lg-4">
+							<img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
+						</div>
+						<div class="col-lg-6">
+							<big>Back</big>
+						</div>
+					</a></div>
+				</div>
+			</div>	
+			<div class="col-lg-8">	
+			<form>
+			    <div class="row">
+			    	<div class="col-lg-12">
+					  	<label for="Login">Login: </label>
+					  	<input id="Login" type="email" class="form-control" placeholder="example@example.com" ng-model="login" required>
+				  	</div>
+				  	<div class="col-lg-12">
+					  	<label for="password">Password: </label>
+					  	<input id="passord" type="password" class="form-control" ng-model="password" required>
+				  	</div>
+				  	<div class="col-lg-12">
+					  	<label for="repeatpassword">Repeat password: </label>
+					  	<input id="repeatpassword" type="password" class="form-control" ng-model="repeatpassword" required>
+				  	</div>
+				  	<legend>Customer: </legend>
+				  	<div class="col-lg-12">
+					  	<label for="Company">Company: </label>
+					  	<input id="Company" type="text" class="form-control" ng-model="company" required>
+				  	</div>
+				  	<div class="col-lg-12">
+					  	<label for="Contact">Contact: </label>
+					  	<input id="Contact" type="text" class="form-control" ng-model="contact" required>
+					</div>
+					<div class="col-lg-12">
+					  	<label for="Mail">Mail: </label>
+					  	<input id="Mail" type="text" class="form-control" ng-model="email" required>
+					</div>
+					<div class="col-lg-12">
+					  	<label for="Phone">Phone Number: </label>
+					  	<input id="Phone" type="text" class="form-control" ng-model="phone_number" required>
+					</div>
+				</div>
+				<center><button ng-click="createUser()">Envoyer</button></center>
+			  </div>
+			  </form>
+			  </div>
+			  <div class="col-lg-2" style="text-align: right;">
+		  	Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
+		  </div>
+		  </div>
+		</div>
+	</div>
+	</div>
+</body>
+<script src="./controller/Project.js"></script>
+<script src="./controller/NewUser.controller.js"></script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ebe Arm</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+<body>
+  <script src="js/three.js"></script>
+  <script src="js/STLLoader.js"></script>
+  <script src="js/Detector.js"></script>
+  <script src="js/OrbitControls.js"></script>
+  <script src="js/handLoader.js"></script>
+  <script type="text/javascript">var loader = new THREE.STLLoader();
+  var fichier = getProject();
+  var material = new THREE.MeshPhongMaterial( { color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
+
+  loader.load( 'https://159.84.143.246:8243/3dscan/v1/Fitman3DImages/'+fichier, function ( geometry ) {
+   var mesh = new THREE.Mesh( geometry, material );
+   mesh.scale.set( 0.5, 0.5, 0.5 );
+   mesh.castShadow = true;
+   mesh.receiveShadow = true;
+   scene.add( mesh );
+ });
+  scene.add( new THREE.HemisphereLight( 0x443333, 0x111122 ) );
+  addShadowedLight( 1, 1, 1, 0xffffff, 0 );
+  addShadowedLight( 0.5, 1, - 1, 0xcccccc, 1 );
+
+  function addShadowedLight( x, y, z, color, intensity ) {
+    var directionalLight = new THREE.DirectionalLight( color, intensity );
+    directionalLight.position.set( x, y, z );
+    scene.add( directionalLight );
+    directionalLight.castShadow = true;
+    var d = 1;
+    directionalLight.shadow.camera.left = - d;
+    directionalLight.shadow.camera.right = d;
+    directionalLight.shadow.camera.top = d;
+    directionalLight.shadow.camera.bottom = - d;
+    directionalLight.shadow.camera.near = 1;
+    directionalLight.shadow.camera.far = 4;
+    directionalLight.shadow.mapSize.width = 1024;
+    directionalLight.shadow.mapSize.height = 1024;
+    directionalLight.shadow.bias = - 0.002;
+  }
+
+  function getProject()
+  {
+    var str = window.location.search;
+    str = str.substr(1);
+    return str;
+  }
+</script>
+</body>
+</html>

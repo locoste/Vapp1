@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/vApp.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  </head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+<body>
+<div ng-app="Project">
+	<div ng-controller="UserPage">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-2">
+				<div style="width: 180px; height: 140px;">
+					<img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
+					<img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
+				</div>
+			</div>
+			<div class="col-lg-8" style="text-align: center">
+				<h1><big><big>User Page</big></big></h1>
+				<img alt="H2020_head" src="./images/bandeau.jpg">
+			</div>
+			<div class="col-lg-2">
+				<div class="row">
+					<div class="col-lg-12">
+						<a href="UserPage.html?{{User}}">{{User}}
+              			<img alt="user" src="./images/user.jpg" style="width: 50px; height: 50px;"></a>
+					</div>
+					<div class="col-lg-12">
+						<img alt="message" src="./images/message.jpg" style="width: 50px; height: 50px;">
+						<a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
+						<a href="/login.html" ng-click="logout()"><img alt="logout" src="./images/signout.jpg" style="width: 50px; height: 50px;"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<p><big><big></big></big></p>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-offset-1 col-lg-2" style="border: 2px solid black; border-radius: 6px;">	
+				<legend> Menu </legend>
+				<div class="row">
+					<div><a href="Accueil.html">
+						<div class="col-lg-4">
+							<img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
+						</div>
+						<div class="col-lg-6">
+							<big>Back</big>
+						</div>
+					</a></div>
+				</div>
+			</div>	
+			<div class="col-lg-8">	
+			<form method="post">
+			  <div class="row">
+			  	<div class="col-lg-6">
+			  		<div class="row">
+					  	<legend>Customer: </legend>
+					  	<div class="col-lg-12">
+						  	<label for="Company">Company: </label>
+					  		<input type="text" ng-model="company">
+					  	</div>
+						<div class="col-lg-12">
+						  	<label style="font-weight: bold">login: </label>
+						  	<input type="email" ng-model="login">
+						</div>
+						<div class="col-lg-12">
+						  	<label style="font-weight: bold">Password: </label>
+						  	<input type="password" ng-model="password">
+						</div>
+						<div class="col-lg-12">
+						  	<label style="font-weight: bold">Repeat Password: </label>
+						  	<input type="password" ng-model="repassword">
+						</div>
+						<legend>Contact:</legend>
+						<div class="col-lg-12">
+						  	<label style="font-weight: bold">Contact: </label>
+						  	<input type="text" ng-model="contact">
+						</div>
+						<div class="col-lg-12">
+						  	<label style="font-weight: bold">E-mail: </label>
+						  	<input type="email" ng-model="email">
+						</div>
+						<div class="col-lg-12">
+						  	<label style="font-weight: bold">Phone Number: </label>
+						  	<input type="text" ng-model="phone_number">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					
+			  </div>
+			  <center><button ng-click="ChangeUser()">Submit</button></center>
+			  </form>
+			  </div>
+			  <div class="col-lg-2" style="text-align: right;">
+		  	Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
+		  </div>
+		  </div>
+		</div>
+	</div>
+	</div>
+</body>
+<script src="./controller/Project.js"></script>
+<script src="./controller/UserPage.controller.js"></script>
+</html>

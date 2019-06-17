@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+    3dscan:
+     depends_on:
+      - mysql3dscan
+     build: tomcatContainer\tomcat7
+     image: 3dscan
+     ports:
+       - "8080:8080"
+     links:
+      - mysql3dscan:mysql3dscan-container
+    mysql3dscan:
+     image: mysql3dscan
+     container_name: mysql3dscan-container
+     hostname: mysql3dscan-host
+     build: 
+      context: .
+      dockerfile: mysqlContainer/Dockerfile
+     ports:
+       - "3307:3307"
+     environment:
+       MYSQL_ROOT_USER: root
+       MYSQL_ROOT_PASSWORD: fitman
+       MYSQL_DATABASE: fitman
+
+        

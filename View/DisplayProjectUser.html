@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8"> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/vApp.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<body>
+  <div ng-app="Project">
+    <div ng-controller="DisplayProjectUser">
+    <div class="container">
+     <div class="row">
+      <div class="col-lg-2">
+        <div style="width: 180px; height: 140px;">
+          <img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
+          <img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
+        </div>
+      </div>
+      <div class="col-lg-8" style="text-align: center">
+        <h1><big><big>Project Information</big></big></h1>
+        <img alt="H2020_head" src="./images/bandeau.jpg">
+      </div>
+      <div class="col-lg-2">
+        <div class="row">
+          <div class="col-lg-12">
+            <a href="UserPage.html?{{User}}">{{User}}
+            <img alt="user" src="./images/user.jpg" style="width: 50px; height: 50px;"></a>
+          </div>
+          <div class="col-lg-12">
+            <img alt="message" src="./images/message.jpg" style="width: 50px; height: 50px;">
+            <a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
+            <a href="/login.html" ng-click="logout()"><img alt="logout" src="./images/signout.jpg" style="width: 50px; height: 50px;"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p><big><big></big></big></p>
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-3" style="border: 2px solid black; border-radius: 6px;"> 
+        <legend> Menu </legend>
+        <div class="row">
+          <div><a href="DisplayAllProject.html">
+            <div class="col-lg-12">
+              <img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
+              <big>Back</big>
+            </div>
+          </a></div>
+        </div>
+        <p></p>
+        <div class="row">
+          <div ng-click="saveChangement()"><a href="DisplayAllProject.html">
+            <div class="col-lg-12">
+              <img style="width: 40px; height: 40px;" alt="Save" src="./images/save.jpg">
+              <big>Save</big>
+            </div>
+          </a></div>
+        </div>
+        <p></p>
+      </div>  
+      <div class="col-lg-8">
+          <form method="get">
+            <div class="row">
+              <div class="col-lg-6">
+                <div>
+                  <label for="Project reference" style="font-weight: bold">Project reference: </label>
+                  <input id="project_reference" type="text" class="form-control" ng-model="project_reference">
+                </div>
+                <div>
+                  <label for="Description" style="font-weight: bold">Description: </label>
+                  <input id="Description" type="textarea" class="form-control" ng-model="description">
+                </div>
+                <div>
+                  <label for="Status" style="font-weight: bold">Status: </label> {{status}}
+                </div>
+                <div>
+                <div>
+                  <label for="Internal Reference" style="font-weight: bold">Internal Reference</label>
+                  <input id="Internal Reference" type="text" class="form-control" ng-model="internal_reference">
+                </div>
+                <div>
+                  <label for="Expected_Delivery" style="font-weight: bold">Expected Delivery</label>
+                  <input id="Expected_Delivery" type="text" class="form-control" ng-model="delivery">
+                </div>
+                <button ng-click="showQuantity()">Display Quantities</button>
+              </div>
+            </div>
+            <div class="col-lg-6" style="border-width: medium">
+              <p></p>
+              <div>
+                  <label for="Company" style="font-weight: bold">Company:</label> {{company}}
+                </div>
+              <div>
+                <label for="Contact" style="font-weight: bold">Contact:</label> {{contact}}
+              </div>
+              <div>
+                <label for="Email" style="font-weight: bold">Email:</label> {{email}}
+              </div>
+              <div>
+                <label for="Phone Number" style="font-weight: bold">Phone Number:</label> {{phone_number}}
+              </div>
+                <legend style="font-weight: bold">Documents</legend>
+                <p><input id="files" type="file" multiple/>
+                <button ng-click="displayFileName()">Add</button></p>
+                <label style="font-weight: bold">3Dscan files:</label>
+                <table>
+                <tr ng-repeat="scan in scans"> 
+                  <td>{{scan}}</td><td><button ng-click="deleteFile(scan, 1)">Delete</button></td>
+                </tr>
+                </table>
+                  <p><label style="font-weight: bold">Other files:</label>
+                  <table>
+                    <tr ng-repeat="file in files"> 
+                    <td>{{file}}</td><td><button ng-click="deleteFile(file, 2)">Delete</button></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+  <div class="col-lg-12" style="text-align: right;">
+      Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
+    </div>
+</div>
+</div>
+</div>
+<script src="./controller/Project.js"></script>
+<script src="./controller/DisplayProjectUser.controller.js"></script>
+</body>
+</html>
