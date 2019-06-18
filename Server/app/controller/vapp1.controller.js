@@ -484,7 +484,7 @@ exports.getQuantities = function(req, res)
 }
 
 exports.getQuantitiesWithoutProject = function(req, res){
-  var user = res.user.id;
+  var user = req.user.id;
   query = 'SELECT quantity_id, quantity , lot_size, number_of_lot, default_label FROM product_quantity WHERE project is null and user='+user
   odbcConnector(query, function(result){
     res.send(result);
