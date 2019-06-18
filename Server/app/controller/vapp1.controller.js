@@ -36,6 +36,7 @@ exports.favicon = function(req, res){
 
 exports.displayPage = function(req, res) {
   var page = req.params.page;
+  console.log('displage page function')
   if(page=='NewFeatures.html' || page=='updateFeatures.html' || page=='AcceptReject.html'){
     if(req.user.role!='admin' && req.user.role!='APR' && req.user.role!='TARDY'){
       page='Unauthorized.html'    
@@ -52,6 +53,7 @@ exports.displayPage = function(req, res) {
     }
   }
   res.writeHead(200, {"Content-Type": "text/html"});
+  console.log(page)
   fs.readFile('../View/'+page, function(err, html){
     if(err){  
       throw err;
@@ -482,21 +484,10 @@ exports.getQuantities = function(req, res)
 }
 
 exports.getQuantitiesWithoutProject = function(req, res){
-  query = 'SELECT quantity_id, quantity , lot_size, number_of_lot, default_label FROM product_quantity WHERE project is null;'
-  var row = '{"quantities":[ ';
+  var user = res.user.id;
+  query = 'SELECT quantity_id, quantity , lot_size, number_of_lot, default_label FROM product_quantity WHERE project is null and user='+user
   odbcConnector(query, function(result){
-    for (var i = 0; i < result.length; i++) {
-      row = row + '{"quantity_id":"' + result[i].quantity_id + '",'
-      row = row + '"quantity": "' + result[i].quantity + '",'
-      row = row + '"lot_size":"' + result[i].lot_size + '",'
-      row = row + '"number_of_lot":"' + result[i].number_of_lot + '",'
-      row = row + '"default_label":"' + result[i].default_label + '"},'
-    }
-    row = row.substr(0,row.length - 1);
-    row = row + ']}'
-
-    res.write(row);
-    res.end();
+    res.send(result);
   })
 }
 
@@ -504,8 +495,6 @@ exports.newQuantity = function(req, res){
   var project = req.params.project;
   var bodyquantity = req.body.quantity;
   query = 'INSERT INTO product_quantity(quantity, lot_size, number_of_lot, default_label, project) VALUES (' + bodyquantity.quantity + ', ' + bodyquantity.lot_size + ', ' + bodyquantity.number_of_lot + ', "' + bodyquantity.default_label + '", (SELECT project_id FROM project WHERE project_name = "'+ project +'"))'
-  //odbcConnector(query, function(){});
-  //query = 'UPDATE project SET quantity = (SELECT max(quantity_id) FROM product_quantity) WHERE project_name = "' + project + '";'
   odbcConnector(query, function(){
     res.write("quantity added!!!!");
     res.end();
@@ -514,8 +503,8 @@ exports.newQuantity = function(req, res){
 
 exports.newQuantityWithoutProject = function(req, res){
   var quantity = req.body.quantity
-  //var user = res.user.id;
-  query = 'INSERT INTO product_quantity(quantity, lot_size, number_of_lot, default_label) VALUES (' + quantity.quantity + ', ' + quantity.lot_size + ', ' + quantity.number_of_lot + ', "' + quantity.default_label + '")'
+  var user = res.user.id;
+  query = 'INSERT INTO product_quantity(quantity, lot_size, number_of_lot, default_label, user) VALUES (' + quantity.quantity + ', ' + quantity.lot_size + ', ' + quantity.number_of_lot + ', "' + quantity.default_label + '",'+user+')'
   odbcConnector(query, function(result){
     res.send(result);
   })
