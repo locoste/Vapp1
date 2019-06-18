@@ -503,7 +503,7 @@ exports.newQuantity = function(req, res){
 
 exports.newQuantityWithoutProject = function(req, res){
   var quantity = req.body.quantity
-  var user = res.user.id;
+  var user = req.user.id;
   query = 'INSERT INTO product_quantity(quantity, lot_size, number_of_lot, default_label, user) VALUES (' + quantity.quantity + ', ' + quantity.lot_size + ', ' + quantity.number_of_lot + ', "' + quantity.default_label + '",'+user+')'
   odbcConnector(query, function(result){
     res.send(result);
