@@ -503,10 +503,26 @@ exports.newQuantity = function(req, res){
 
 exports.newQuantityWithoutProject = function(req, res){
   var quantity = req.body.quantity
-  var user = req.user.id;
+  var user = res.user.id;
   query = 'INSERT INTO product_quantity(quantity, lot_size, number_of_lot, default_label, user) VALUES (' + quantity.quantity + ', ' + quantity.lot_size + ', ' + quantity.number_of_lot + ', "' + quantity.default_label + '",'+user+')'
   odbcConnector(query, function(result){
     res.send(result);
+  })
+}
+
+exports.deleteQuantity = function(req, res){
+  var quantity_id = req.params.quantityId;
+  var user = req.user.id;
+  var query = 'SELECT user FROM product_quantity WHERE quantity_id = '+quantity_id
+  odbcConnector(query, function(result){
+    if(result[0].user == user){
+      query = 'DELETE FROM product_quantity WHERE quantity_id = ' + quantity_id
+      odbcConnector(query, function(resu){
+        res.send('quantity deleted!!!!')
+      })
+    } else {
+      res.status(403).send("You doesn't have the rigth to delete this quantity");
+    }
   })
 }
 
