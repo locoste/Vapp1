@@ -310,7 +310,7 @@ exports.getProjectInformation = function(req, res) {
 
 exports.getCompanies = function (req, res) {
   var user = req.session.passport.user;
-  query = 'SELECT DISTINCT company, login FROM customer C JOIN users U on C.customer_id=U.customer WHERE user_id='+user+';'
+  query = 'SELECT DISTINCT company FROM customer C JOIN users U on C.customer_id=U.customer WHERE user_id='+user+';'
   odbcConnector(query, function(result) {
     var row = '{"companies": [';
     for (var i = 0; i < result.length; i++) {
@@ -405,15 +405,17 @@ exports.newFeatures = function(req, res) {
   var creation_date = dateFormat(Date.now(), "isoDate");
 
   checkPermission(req, res, function(){
-    query = 'INSERT INTO features (label, attribution, component, compound, ratio, material, heat_treatment, surface_treatment, width, lenght, height, volume, manufacturing, tolerance, rugosity, comments, part_reference, creation_date, feature_status, metal, plastic, project)'
-    + 'VALUES ("'+ features.label +'","'+ features.attribution +'","' + features.component+'", "' + features.compound+'", "' + features.ratio+'","' + features.material+'", "' + features.heat_treatment+'", "' + features.surface_treatment+'", "' + features.width +'", "' + features.lenght+'", "' + features.height+'", "' + features.volume+'", "' + features.manufacturing+'", "' + features.tolerance+'", "' + features.rugosity+'", "' + features.comments+'", "' + features.part_reference+'", "' + creation_date+'","Submitted",'+features.metal+','+features.plastic+',(SELECT project_id FROM project WHERE project_name="'+project+'"));';
-    odbcConnector(query, function(result1){
-      var queryMax = 'SELECT max(feature_id) as feature FROM features'
-      odbcConnector(queryMax, function(result){
-        res.write(JSON.stringify(result));
-        res.end();
-      })
-    });
+    rankingMark(function(response){
+      query = 'INSERT INTO features (label, attribution, component, compound, ratio, material, heat_treatment, surface_treatment, width, lenght, height, volume, manufacturing, tolerance, rugosity, comments, part_reference, creation_date, feature_status, metal, plastic, project, ranking)'
+      + 'VALUES ("'+ features.label +'","'+ features.attribution +'","' + features.component+'", "' + features.compound+'", "' + features.ratio+'","' + features.material+'", "' + features.heat_treatment+'", "' + features.surface_treatment+'", "' + features.width +'", "' + features.lenght+'", "' + features.height+'", "' + features.volume+'", "' + features.manufacturing+'", "' + features.tolerance+'", "' + features.rugosity+'", "' + features.comments+'", "' + features.part_reference+'", "' + creation_date+'","Submitted",'+features.metal+','+features.plastic+',(SELECT project_id FROM project WHERE project_name="'+project+'"),'+response+');';
+      odbcConnector(query, function(result1){
+        var queryMax = 'SELECT max(feature_id) as feature FROM features'
+        odbcConnector(queryMax, function(result){
+          res.write(JSON.stringify(result));
+          res.end();
+        })
+      });
+    })
   });
 }
 
@@ -433,10 +435,14 @@ exports.deleteFeature = function(req, res){
 exports.updateFeatures = function(req, res) {
   var features = req.body;
   checkPermission(req, res, function(){
-    query = 'UPDATE features SET label = "' + features.label + '", attribution = "' + features.attribution + '", component = "' + features.component + '", compound = "' + features.compound + '", ratio = "' + features.ratio + '", material = "' + features.material + '", heat_treatment = "' + features.heat_treatment + '", surface_treatment = "' + features.surface_treatment + '", width = "' + features.width + '", lenght = "' + features.lenght + '", height = "' + features.height + '", volume = "' + features.volume + '", manufacturing = "' + features.manufacturing + '", tolerance = "' + features.tolerance + '", rugosity = "' + features.rugosity + '", comments = "' + features.comments + '", part_reference = "' + features.part_reference + '", modification_date = "' + dateFormat(Date.now(), "isoDate") + '" WHERE feature_id = ' +features.feature_id
-    odbcConnector(query, function(){
-      res.write('features updated');
-      res.end();
+    rankingMark(function(response){
+
+      query = 'UPDATE features SET label = "' + features.label + '", attribution = "' + features.attribution + '", component = "' + features.component + '", compound = "' + features.compound + '", ratio = "' + features.ratio + '", material = "' + features.material + '", heat_treatment = "' + features.heat_treatment + '", surface_treatment = "' + features.surface_treatment + '", width = "' + features.width + '", lenght = "' + features.lenght + '", height = "' + features.height + '", volume = "' + features.volume + '", manufacturing = "' + features.manufacturing + '", tolerance = "' + features.tolerance + '", rugosity = "' + features.rugosity + '", comments = "' + features.comments + '", part_reference = "' + features.part_reference + '", modification_date = "' + dateFormat(Date.now(), "isoDate") + '" , ranking='+response+'  WHERE feature_id = ' +features.feature_id
+      odbcConnector(query, function(){
+
+        res.write('features updated');
+        res.end();
+      })
     })
   });
 }
@@ -592,7 +598,7 @@ exports.setDecision = function (req, res) {
 
 exports.projectSummary = function(req, res) {
   var project = req.params.project;
-  var query = 'SELECT company, part_reference, label FROM project P JOIN customer C on P.customer=C.customer_id JOIN features F on P.project_id = F.project WHERE project_name = "' + project + '";'
+  var query = 'SELECT company, part_reference, label, ranking FROM project P JOIN customer C on P.customer=C.customer_id JOIN features F on P.project_id = F.project WHERE project_name = "' + project + '";'
   odbcConnector(query, function(result) {
     var row = '{"project": {'
     row += '"company": "' + result[0].company + '",'
@@ -600,7 +606,8 @@ exports.projectSummary = function(req, res) {
     for (i = 0; i < result.length; i++)
     {
       row += '{"part_reference": "' + result[i].part_reference + '",'
-      row += '"label": "' + result[i].label + '"},'
+      row += '"label": "' + result[i].label + '",'
+      row += '"ranking":"' + result[i].ranking + '%"},'
     }
     row = row.substr(0,row.length - 1);
     row = row + ']}}'
@@ -809,6 +816,14 @@ exports.postDCMEId = function(req, res){
       res.send('document uploaded!!')
     })
   })
+}
+
+function rankingMark (callback){
+  var project =  req.params.project;
+  var min = 50;
+  var max = 90;
+  var mark = Math.random() * (max - min) + min;
+  callback(mark);
 }
 
 function getIdFolder(company, parentid, callback){
