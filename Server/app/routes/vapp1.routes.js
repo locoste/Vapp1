@@ -15,16 +15,11 @@ module.exports = function(app) {
     var fs = require('fs');
 
     var options = {
-      /*host: process.env.DATABASE_HOST,
+      host: process.env.DATABASE_HOST,
       port: process.env.DATABASE_PORT,
       user: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE_SCHEMA*/
-      host: 'localhost',
-      port: 3306,
-      user: 'root',
-      password: 'Lamoule07130',
-      database: 'vapp1'
+      database: process.env.DATABASE_SCHEMA
     };
 
     var sessionStore = new MySQLStore(options);
@@ -56,7 +51,7 @@ module.exports = function(app) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-
+ 
     // redirecting 
     app.get('/', contSession.authrequired, contSession.redirecting);
 
@@ -84,7 +79,7 @@ module.exports = function(app) {
     // display all project page
     app.get('/Vapp1/:page', contSession.authrequired, controller.displayPage);
 
-    app.get('/Vapp1/readpdf/:page', controller.readpdf);
+    //app.get('/Vapp1/readpdf/:page', controller.readpdf);
 
     // get 3D script 
     app.get('/Vapp1/js/:script', contSession.authrequired, controller.get3DScript);
@@ -134,7 +129,7 @@ module.exports = function(app) {
     // get all quantities for a project
     app.get('/getQuantities/:project', contSession.authrequired, controller.getQuantities);
 
-    // get all quantities on project creation
+    // get all quantities on project creation 
     app.get('/getQuantities', contSession.authrequired, controller.getQuantitiesWithoutProject);
 
     // add a new quantity for a project
@@ -142,6 +137,9 @@ module.exports = function(app) {
 
     // add a new quantity on project creation
     app.post('/newQuantity', contSession.authrequired, controller.newQuantityWithoutProject);
+
+    // delete quantity with id
+    app.delete('/deleteQuantity/:quantityId', contSession.authrequired, controller.deleteQuantity) 
 
     // get decision for a project
     app.get('/getDecision/:project', contSession.authrequired, controller.getDecision);
