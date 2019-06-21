@@ -11,200 +11,246 @@
 <body>
   <div ng-app="Project">
     <div ng-controller="DisplayProject">
+      <p><big><big></big></big></p>
       <header>
-        <div>
-          <h1>PROJECT INFORMATION</h1>
-          <i class="fas fa-home fa-3x"></i>
-          <div class="header_icon">
-            <a class="header_a" href="UserPage.html?{{User}}">{{User}}
-              <i class="fas fa-user-circle fa-3x"></i>
-            </a>
-            <a class="header_a"><i class="far fa-comment fa-4X"></i></a>
-            <a class="header_a" href="/login.html" ng-click="logout()"><i class="fas fa-sign-out-alt fa-3x"></i></a>
-          </div>
-        </div>
-        </header>
-        <div class="container">
-         <div class="row">
-          <div class="col-lg-2">
-            <div class="APR-TARDY-logo" style="width: 180px; height: 140px;">
-              <img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
-              <img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
-            </div>
-          </div>
-          <div class="col-lg-2">
-            <div class="row">
-                <div class="col-lg-12">
-                  <a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
+        PROJECT INFORMATION
+      </header>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-2"> <!-- Menu gauche -->
+            <div class="menu_gauche"> 
+              <h2 class="menu_text"> MENU </h2>
+              <div class="row">
+                <div class="col-md-3">                
+                  <a href="DisplayAllProject.html"><i class="far fa-caret-square-left fa-3x"></i>
+                  </a></div>
+                  <div class="col-md-9">
+                    <a href="DisplayAllProject.html"><big class="menu_text">Back</big></a>
+                  </div>
+                </div>
+                <p></p>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div ng-click="saveChangement()"><a href="DisplayAllProject.html"> <i class="far fa-save fa-3x"></i>
+                    </a></div>
+                  </div>
+                  <div class="col-md-9">
+                    <a ng-click="saveChangement()" href="DisplayAllProject.html"><big class="menu_text">Save</big> </a>
+                  </div>
+                </div>
+                <p></p>
+                <div class="row">
+                  <div class="col-md-3">
+                    <div ng-click="saveChangement()" id="buttonforAcceptation"><a id="acceptationButton" href=""><i class="far fa-check-square fa-3x"></i>
+                    </a></div>
+                  </div>
+                  <div class="col-md-9">
+                    <a ng-click="saveChangement()" id="buttonforAcceptation"><a id="acceptationButton" href=""><big class="menu_text">Decision</big></a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <p><big><big></big></big></p>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3" style="border: 2px solid black; border-radius: 6px;"> 
-              <h2> Menu </h2>
-              <div class="row">
-                <div><a href="DisplayAllProject.html">
-                  <div class="col-lg-12">
-                    <img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
-                    <big>Back</big>
-                  </div>
-                </a></div>
-              </div>
-              <p></p>
-              <div class="row">
-                <div ng-click="saveChangement()"><a href="DisplayAllProject.html">
-                  <div class="col-lg-12">
-                    <img style="width: 40px; height: 40px;" alt="Save" src="./images/save.jpg">
-                    <big>Save</big>
-                  </div>
-                </a></div>
-              </div>
-              <p></p>
-              <div class="row">
-                <div ng-click="saveChangement()" id="buttonforAcceptation"><a id="acceptationButton" href="">
-                  <div class="col-lg-12">
-                    <img style="width: 40px; height: 40px;" alt="Save" src="./images/decision.jpg">
-                    <big>Decision</big>
-                  </div>
-                </a></div>
-              </div>
             </div>  
-            <div class="col-lg-9">
+            <div class="col-lg-10">
+              <div class="row"> <!-- Header personnalisé -->
+                <div class="col-md-9">
+                  <h1>PROJECT INFORMATION</h1>
+                </div>
+                <div class="col-md-3">
+                  <div class="header_icons">
+                    <a class="header_a" href="UserPage.html?{{User}}">{{User}}
+                      <i class="fas fa-user-circle fa-2x"></i>
+                    </a>
+                    <a classe="header_a" href="Accueil.html"> 
+                      <i class="fas fa-home fa-2x"></i>
+                    </a>            
+                    <a class="header_a" href="/login.html" ng-click="logout()">
+                      <i class="fas fa-sign-out-alt fa-2x"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
               <form method="get">
                 <div class="row">
-                  <div class="col-lg-6">
+                  <div class="col-lg-6"> <!-- Partie gauche -->
                     <h2>Project Information</h2>
-                    <div class="div_h2">
-                    <div class="line">
-                      <label for="Project reference">Project reference: </label>
-                      <input id="project_reference" type="text" ng-model="project_reference">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="Project reference">Project reference: </label>
+                      </div>
+                      <div class="col-md-6">
+                        <input id="project_reference" type="text" ng-model="project_reference">
+                      </div>
                     </div>
                     <div>
                       <label for="Description">Description: </label>
                       <textarea id="Description" ng-model="description"></textarea>
                     </div>
-                    <div>
-                      <label for="Status">Status: </label> {{status}}
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label for="Status">Status: </label> 
+                      </div>
+                      <div class="col-md-6">
+                        {{status}}
+                      </div>
                     </div>
                     <div>
-                      <div>
-                        <label for="Internal Reference">Internal Reference: </label> {{internal_reference}}
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="Internal Reference">Internal Reference: </label> 
+                        </div>
+                        <div class="col-md-6">
+                          {{internal_reference}}
+                        </div>
                       </div>
-                      <div class="line">
-                        <label for="Expected_Delivery">Expected Delivery</label>
-                        <input id="Expected_Delivery" type="text" ng-model="delivery">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <label for="Expected_Delivery">Expected Delivery</label>
+                        </div>
+                        <div class="col-md-6">
+                          <input id="Expected_Delivery" type="text" ng-model="delivery">
+                        </div>
                       </div>
                     </div>
                   </div>
-                  </div>
-                  <div class="col-lg-6" style="border-width: medium">
+                  <div class="col-lg-6"> <!-- Partie droite -->
                     <h2>Customer Information</h2>
-                    <div> 
-                      <label>company: </label> {{company}}
+                    <div class="row"> 
+                      <div class="col-md-6">
+                        <label>Company: </label> 
+                      </div>
+                      <div class="col-md-6">
+                        {{company}}
+                      </div>
                     </div>
-                    <div> 
-                     <label>Contact</label> {{contact}}
+
+                    <div class="row">
+                      <div class="col-md-6"> 
+                       <label>Contact</label> 
+                     </div>
+                     <div class="col-md-6">
+                       {{contact}}
+                     </div>
+                   </div> 
+
+                   <div class="row">
+                    <div class="col-md-6">
+                      <label>E-mail</label> 
                     </div>
-                    <div>
-                      <label>E-mail</label> {{email}}
+                    <div class="col-md-6">
+                      {{email}}
                     </div>
-                    <div>
-                      <label>Phone number</label> {{phone_number}}
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Phone number</label> 
+                    </div>
+                    <div class="col-md-6">
+                      {{phone_number}}
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-lg-6">
-                    <h2>Quantity</h2>
-                      <div class="div_h2">
-                        <div class="lg-col-4">
-                          <label for="Quantity" style="font-weight: bold">Quantity:</label>
-                          <input id="Quantity" type="number" ng-model="quantity" onchange="angular.element(this).scope().lotSize()">
-                        </div>
-                        <div class="lg-col-4">
-                          <label for="Nbr Of Lot" style="font-weight: bold">Nbr Of Lot:</label>
-                          <input id="Nbr Of Lot" type="number" ng-model="nbr_of_lot" onchange="angular.element(this).scope().lotSize()">
-                        </div>
-                        <div class="lg-col-4">
-                          <label for="Lot Size" style="font-weight: bold">Lot Size: </label> {{lot_size}}
-                        </div>
-                        <div class="lg-col-12">
-                          <label for="Default Label" style="font-weight: bold">Comments:</label>
-                          <input id="Default Label" type="text" ng-model="default_label">
-                        </div>
-                        <button class="add_quantity" ng-click="AddQuantity()">Add</button>
-                        <table>
-                          <thead>
-                            <th></th><th>Quantity</th><th>Lot Size</th><th>Nbr Of Lot</th><th>Comments</th>
-                          </thead>
-                          <tbody style="text-align: center;">
-                            <tr ng-repeat="x in displayQuantity">
-                              <td type="hidden">{{quantity_id}}</td>
-                              <td>{{x.quantity}}</td>
-                              <td>{{x.lot_size}}</td>
-                              <td>{{x.number_of_lot}}</td>
-                              <td>{{x.default_label}}</td>
-                              <td><button ng-click="deleteQuantity({{x.quantity_id}})">Delete</button></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  <div class="col-lg-6">
-                    <h2>Documents</h2>
-                    <p><input id="files" type="file" class="input_file" multiple/>
-                      <button class="button" ng-click="displayFileName()">Add</button></p>
-                      <table id="files_table">
-                        <thead>
-                          <th>File name</th><th>File type</th><th></th>
-                        </thead>
-                        <tr ng-repeat="file in files">                      
-                          <td>{{file.name}}</td><td>{{file.type}}</td><td><i class="fas fa-times" ng-click="deleteFile(scan, 1)"></i></td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </form>
-                  <div class="col-lg-12">
-                    <h2>Project Features</h2>
-                    <button><a class="href_button" id="addNewFeature" href="">Add feature</a></button>
-                    <div class="table-responsive">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th hidden>id</th><th>Reference</th><th>Label</th><th>Date</th><th>attribution</th><th>Status</th><th></th><th></th>
-                          </tr>
-                        </thead>
-                        <tbody style="text-align: center;">
-                          <tr ng-repeat="x in featuresInformation">
-                            <td hidden>{{x.feature_id}}</td>
-                            <td>{{x.part_reference}}</td>
-                            <td>{{x.label}}</td>
-                            <td>{{x.creation_date}}</td>
-                            <td>{{x.attribution}}</td>
-                            <td>{{x.feature_status}}</td>
-                            <td><a ng-href="updateFeatures.html?{{x.feature_id}}"><i class="far fa-folder-open"></i></a></td>
-                            <td><i class="fas fa-trash-alt" ng-click="deleteFeature(x.feature_id)"></i></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </form>
               </div>
-            </div>
-          </div>
-          <div class="col-lg-12" style="text-align: right;">
-            Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h2>Quantity</h2>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="Quantity" style="font-weight: bold">Quantity:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input id="Quantity" type="number" ng-model="quantity" onchange="angular.element(this).scope().lotSize()">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="Nbr Of Lot" style="font-weight: bold">Nbr Of Lot:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input id="Nbr Of Lot" type="number" ng-model="nbr_of_lot" onchange="angular.element(this).scope().lotSize()">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="Lot Size" style="font-weight: bold">Lot Size: </label> 
+                    </div>
+                    <div class="col-md-6">
+                      {{lot_size}}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="Default Label" style="font-weight: bold">Comments:</label>
+                    </div>
+                    <div class="col-md-6">
+                      <input id="Default Label" type="text" ng-model="default_label">
+                    </div>
+                  </div>
+                  <button class="add_quantity" ng-click="AddQuantity()">Add</button>
+                  <table>
+                    <thead>
+                      <th></th><th>Quantity</th><th>Lot Size</th><th>Nbr Of Lot</th><th>Comments</th>
+                    </thead>
+                    <tbody style="text-align: center;">
+                      <tr ng-repeat="x in displayQuantity">
+                        <td type="hidden">{{quantity_id}}</td>
+                        <td>{{x.quantity}}</td>
+                        <td>{{x.lot_size}}</td>
+                        <td>{{x.number_of_lot}}</td>
+                        <td>{{x.default_label}}</td>
+                        <td><button ng-click="deleteQuantity({{x.quantity_id}})">Delete</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="col-lg-6">
+                  <h2>Documents</h2>
+                  <p><input id="files" type="file" class="input_file" multiple/>
+                    <button class="button" ng-click="displayFileName()">Add</button></p>
+                    <table id="files_table">
+                      <thead>
+                        <th>File name</th><th>File type</th><th></th>
+                      </thead>
+                      <tr ng-repeat="file in files">                      
+                        <td>{{file.name}}</td><td>{{file.type}}</td><td><i class="fas fa-times" ng-click="deleteFile(scan, 1)"></i></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </form>
+              <div class="col-lg-12">
+                <h2>Project Features</h2>
+                <button><a class="href_button" id="addNewFeature" href="">Add feature</a></button>
+                <p></p>
+                <div class="table-responsive">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th hidden>id</th><th>Reference</th><th>Label</th><th>Date</th><th>Attribution</th><th>Status</th><th></th><th></th>
+                      </tr>
+                    </thead>
+                    <tbody style="text-align: center;">
+                      <tr ng-repeat="x in featuresInformation">
+                        <td hidden>{{x.feature_id}}</td>
+                        <td>{{x.part_reference}}</td>
+                        <td>{{x.label}}</td>
+                        <td>{{x.creation_date}}</td>
+                        <td>{{x.attribution}}</td>
+                        <td>{{x.feature_status}}</td>
+                        <td><a ng-href="updateFeatures.html?{{x.feature_id}}"><i class="far fa-folder-open"></i></a></td>
+                        <td><i class="fas fa-trash-alt" ng-click="deleteFeature(x.feature_id)"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
-    <script src="./controller/Project.js"></script>
-    <script src="./controller/DisplayProject.controller.js"></script>
-  </body>
-  </html>
+  </div>
+</div>
+<script src="./controller/Project.js"></script>
+<script src="./controller/DisplayProject.controller.js"></script>
+</body>
+</html>
