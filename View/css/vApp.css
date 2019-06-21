@@ -1,58 +1,50 @@
+html {
+  height: 100%;
+  margin: 0px;
+}
+
 header {
-  height : 90px;
-  margin: 0;
-  background-color: #e5e8f1;
-  border-bottom: 1px solid #47a2ff;
-}
-
-.header_icon {
-  float: right;
-}
-
-.header_a {
-  color: white;
-}
-
-.vfos_logo {
-  float: left;
+  height : 45px;
+  margin: 0px;
+  background-color: #efefef;
+  border-bottom: 1px solid #5161A2;
 }
 
 body {
-  background-color: #efefef;
+  background: rgb(228,228,228);
+  background: linear-gradient(-15deg, rgba(228,228,228,1) 0%, rgba(255,255,255,1) 58%, rgba(255,255,255,1) 100%);
+  font-family: 'Roboto', sans-serif;
+  margin-left: -16px;
+  margin-top: -16px;
 }
 
+
 h1 {
-  color: #47a2ff;
+  color: #5161A2;
   text-align: left;
   vertical-align: middle;
   font-family: 'Roboto', sans-serif;
   font-size: 24pt;
+  padding-bottom: 10px;
 }
 
 h2 {
-  color: #47a2ff;
+  color: #5161A2;
   text-align: left;
   font-family: 'Roboto', sans-serif;
   font-size: 18pt;
-}
-
-.h2_menu {
-
-}
-
-.div_h2 {
-  padding-left: 2em;
+  padding-bottom: 10px;
 }
 
 label {
   font-weight: bold;
-  color: #47a2ff;
+  color: #5161A2;
   font-family: 'Roboto', sans-serif;
   font-size: 12pt;
 }
 
 input {
-  border-bottom: : 1px #47a2ff;
+  border-bottom: : 1px #5161A2;
 }
 
 textarea {
@@ -65,9 +57,7 @@ textarea {
     width: 100%;
 }
 
-.input_file {
-  border: 0px;
-}
+
 
 button {
 	background-color: #cac9ff ;
@@ -84,10 +74,6 @@ button {
   border-radius: 40px;
   overflow: visible;
   text-rendering: bold;
-}
-
-.add_quantity {
-  float: right;
 }
 
 
@@ -112,24 +98,74 @@ th {
   padding-top: 6px;
   padding-bottom: 6px;
   text-align: center;
-  background-color: #6AB3FB;
+  background-color: #384261;
   color: white;
-  font-weight: bold;
 }
 
-.line {
-  display: inline-block;
-}
 
 .href_button {
   color: #fff;
 }
 
-.menu_a {
-  color : #47a2ff;
+.menu_gauche {
+  /*background: rgb(27,32,50);
+  background: linear-gradient(40deg, rgba(27,32,50,1) 0%, rgba(40,40,79,1) 65%, rgba(58,99,133,1) 100%);*/
+  background-color: #384261;
+  margin: 0px;
+  height: 100%;
+  padding-left: 50px;  
+  padding-top: 10px;
+  /*box-shadow: 0px 0px 20px 0px #1A2A3A;*/
+}
+
+.menu_text {
+  color:white;
 }
 
 .fa-user-circle {
-  color: #47a2ff;
-  align-items: right;
+  color: #5161A2;
 }
+.fa-caret-square-left {
+  color: #939cb9;
+}
+.fa-save{
+  color: white;
+}
+.fa-check-square {
+  color: white;
+}
+.fa-home {
+  color: #5161A2;
+}
+.fa-sign-out-alt {
+  color: #5161A2;
+}
+
+.header_icons {
+  float: right
+}
+
+.header_a {
+  color: #47a2ff;
+}
+
+.vfos_logo {
+  float: left;
+}
+
+.add_quantity {
+  float: right;
+}
+
+.input_file {
+  border: 0px;
+}
+.container-fluid {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+/*.row {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    }
