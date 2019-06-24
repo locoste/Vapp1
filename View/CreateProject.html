@@ -1,130 +1,204 @@
 <!DOCTYPE html>
 <html>
- <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/vApp.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  </head>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/vApp.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
 <body>
-<div ng-app="Project">
-	<div ng-controller="postNewProject">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-2">
-				<div style="width: 180px; height: 140px;">
-					<img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
-					<img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
-				</div>
-			</div>
-			<div class="col-lg-8" style="text-align: center">
-				<h1><big><big>Add new project</big></big></h1>
-				<img alt="H2020_head" src="./images/bandeau.jpg">
-			</div>
-			<div class="col-lg-2">
-				<div class="row">
-					<div class="col-lg-12">
-						<a href="UserPage.html?{{User}}">{{User}}
-              			<img alt="user" src="./images/user.jpg" style="width: 50px; height: 50px;"></a>
+	<div ng-app="Project">
+		<div ng-controller="postNewProject">
+			<div class="row">
+				<div class="col-lg-2"> <!-- Menu Perso -->
+					<div class="menu_gauche">	
+						<h2 class="menu_text"> Menu <h2>
+							<div class="row">
+								<div class="col-lg-3">
+									<a href="Accueil.html"><i class="far fa-caret-square-left fa-2x"></i></a>
+								</div>
+								<div class="col-lg-9">
+									<a href="Accueil.html"><big>Back</big></a>
+								</div>
+							</div>
+						</div>
+					</div>	
+					<div class="col-lg-10">	
+						<form method="post">
+							<div class="row"><!-- Header perso -->
+								<div class="col-lg-9">
+									<h1>ADD NEW PROJECT</h1>
+								</div>
+								<div class="col-lg-3">
+									<div class="header_icons">
+										<a class="header_a" href="UserPage.html?{{User}}">{{User}}
+											<i class="fas fa-user-circle fa-2x"></i>
+										</a>
+										<a classe="header_a" href="Accueil.html"> 
+											<i class="fas fa-home fa-2x"></i>
+										</a>            
+										<a class="header_a" href="/login.html" ng-click="logout()">
+											<i class="fas fa-sign-out-alt fa-2x"></i>
+										</a>
+									</div>
+								</div>
+							</div>	
+							<div class="row"> 
+								<div class="col-lg-6"> <!-- Partie gauche -->
+									<div class="row">
+										<div class="col-lg-6">
+											<label style="font-weight: bold">Project Reference: </label>
+										</div>
+										<div class="col-lg-6">
+											<input id="project Name" value="" type="text" class="form-control" ng-model="projectName">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<label style="font-weight: bold">Project Description: </label>
+										</div>
+										<div class="col-lg-12">
+											<textarea type="text" class="form-control" ng-model="description"></textarea>
+										</div>
+									</div>
+									<p></p>
+									<div class="row">
+										<div class="col-lg-6">
+											<label style="font-weight: bold">Project Expected delivery: </label>
+										</div>
+										<div class="col-lg-6">
+											<input type="date" class="form-control" ng-model="delivery">
+										</div>
+									</div>
+								</div>
+
+
+								<div class="col-lg-6"> <!-- Partie droite -->
+									<div class="row">
+										<h2>Customer: </h2>
+										<div class="row">
+											<div class="col-lg-6">
+												<label for="Company" style="font-weight: bold">Company: </label>
+											</div>
+											<div class="col-lg-6">
+												<select ng-model="company" ng-change="customerInformation(company)">
+													<option ng-repeat="x in customers">{{x.company}}</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<label for="Contact" style="font-weight: bold">Contact: </label>
+										</div>
+										<div class="col-lg-6">
+											{{contact}}
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<label for="Mail" style="font-weight: bold">Mail: </label>
+										</div>
+										<div class="col-lg-6">
+											{{email}}
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<label for="Phone" style="font-weight: bold">Phone Number: </label>
+										</div>
+										<div class="col-lg-6">
+											{{phone_number}}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6">
+									<h2>Quantity: </h2>
+									<div class="row">
+										<div class="col-lg-6">
+											<label for="Quantity" style="font-weight: bold">Quantity:</label>
+										</div>
+										<div class="col-lg-6">
+											<input id="Quantity" type="number" class="form-control" ng-model="quantity" onchange="angular.element(this).scope().lotSize()">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<label for="Nbr Of Lot" style="font-weight: bold">Nbr Of Lot:</label>
+										</div>
+										<div class="col-lg-6">
+											<input id="Nbr Of Lot" type="number" class="form-control" ng-model="nbr_of_lot" onchange="angular.element(this).scope().lotSize()">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<label for="Lot Size" style="font-weight: bold">Lot Size: </label> 
+										</div>
+										<div class="col-lg-6">
+											{{lot_size}}
+										</div>
+									</div>
+										<div class="lg-col-12">
+											<label for="Default Label" style="font-weight: bold">Comments:</label>
+											<input id="Default Label" type="text" class="form-control" ng-model="default_label">
+										</div>
+										<div class="row">
+										<button ng-click="AddQuantity()" style="float:right;">Add</button>
+										</div>
+										<div class="row">
+										<table class="col-lg-12">
+											<thead style="font-weight: bold; font-size: 15pt">
+												<th></th><th>Quantity</th><th>Lot Size</th><th>Nbr Of Lot</th><th>Comments</th>
+											</thead>
+											<tbody style="text-align: center;">
+												<tr ng-repeat="x in displayQuantity">
+													<td type="hidden">{{quantity_id}}</td>
+													<td>{{x.quantity}}</td>
+													<td>{{x.lot_size}}</td>
+													<td>{{x.number_of_lot}}</td>
+													<td>{{x.default_label}}</td>
+													<td><button ng-click="deleteQuantity(x.quantity_id)">Delete</button></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+								<div class="col-lg-6">
+									<label style="font-weight: bold">Documents</label>
+									<p><input id="files" type="file" multiple/>
+										<button ng-click="displayFileName()">Add</button></p>
+
+										<p><label style="font-weight: bold">3Dscan files:</label>
+											<p ng-repeat="scan in scans">	
+												{{scan.name}}
+											</p></p>
+											<p><label style="font-weight: bold">Other files:</label>
+												<p ng-repeat="file in files">	
+													{{file.name}}
+												</p></p>
+											</div>
+										</div>
+												<!--<div class="col-lg-6">
+													<button ng-click="showQuantity()">Add quantities for project</button>
+												</div>-->
+										<div class="row">
+										<div style="text-align: center;">
+										<button ng-click="submitProject()"><a id="refToHome">Envoyer</a></button>
+										</div>
+										</div>
+										
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="col-lg-12">
-						<img alt="message" src="./images/message.jpg" style="width: 50px; height: 50px;">
-						<a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
-						<a href="/login.html" ng-click="logout()"><img alt="logout" src="./images/signout.jpg" style="width: 50px; height: 50px;"></a>
-					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	<p><big><big></big></big></p>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-offset-1 col-lg-2" style="border: 2px solid black; border-radius: 6px;">	
-				<legend> Menu </legend>
-				<div class="row">
-					<div><a href="Accueil.html">
-						<div class="col-lg-4">
-							<img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
-						</div>
-						<div class="col-lg-6">
-							<big>Back</big>
-						</div>
-					</a></div>
-				</div>
-			</div>	
-			<div class="col-lg-8">	
-			<form method="post">
-				<div class="row">
-					<div class="col-lg-6">
-				<div>
-					<label style="font-weight: bold">Project Reference: </label>
-					<input id="project Name" value="" type="text" class="form-control" ng-model="projectName">
-				</div>
-			  <div>
-			  	<label style="font-weight: bold">Project Description: </label>
-			  	<textarea type="text" class="form-control" ng-model="description"></textarea>
-			  </div>
-			  <div>
-			  	<label style="font-weight: bold">Project Expected delivery: </label>
-			  	<input type="date" class="form-control" ng-model="delivery">
-			  </div>
-			</div>
-			<div class="col-lg-6">
-				<div class="row">
-					<label style="font-weight: bold">Documents</label>
-					<p><input id="files" type="file" multiple/>
-					<button ng-click="displayFileName()">Add</button></p>
-				</div>
-				<p><label style="font-weight: bold">3Dscan files:</label>
-				<p ng-repeat="scan in scans">	
-			      {{scan.name}}
-			    </p></p>
-			    <p><label style="font-weight: bold">Other files:</label>
-				<p ng-repeat="file in files">	
-			      {{file.name}}
-			    </p></p>
-				</div>
-			</div>
-			  <div class="row">
-			  	<div class="col-lg-6">
-			  		<div class="row">
-					  	<legend style="font-weight: bold">Customer: </legend>
-					  	<div class="col-lg-12">
-						  	<label for="Company" style="font-weight: bold">Company: </label>
-						  	<select ng-model="company" ng-change="customerInformation(company)">
-						  		<option ng-repeat="x in customers">{{x.company}}</option>
-						  	</select>
-					  	</div>
-					  	<div class="col-lg-12">
-						  	<label for="Contact" style="font-weight: bold">Contact: </label>
-						  	{{contact}}
-						</div>
-						<div class="col-lg-12">
-						  	<label for="Mail" style="font-weight: bold">Mail: </label>
-						  	{{email}}
-						</div>
-						<div class="col-lg-12">
-						  	<label for="Phone" style="font-weight: bold">Phone Number: </label>
-						  	{{phone_number}}
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<button ng-click="showQuantity()">Add quantities for project</button>
-				</div>
-			  </div>
-			  <center><button ng-click="submitProject()"><a id="refToHome">Envoyer</a></button></center>
-			  </form>
-			  </div>
-		  	</div>
-			<div class="col-lg-2" style="text-align: right;">
-		  		Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
-		  </div>
-		</div>
-	</div>
-	</div>
-</body>
-<script src="./controller/Project.js"></script>
-<script src="./controller/createProject.controller.js"></script>
-</html>
+			</body>
+			<script src="./controller/Project.js"></script>
+			<script src="./controller/createProject.controller.js"></script>
+			</html>
