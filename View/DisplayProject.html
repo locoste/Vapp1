@@ -45,7 +45,7 @@
                     </a></div>
                   </div>
                   <div class="col-md-9">
-                    <a ng-click="saveChangement()" id="buttonforAcceptation"><a id="acceptationButton" href=""><big class="menu_text">Decision</big></a>
+                    <a ng-click="saveChangement()" id="buttonforAcceptation"><a id="acceptationText" href=""><big class="menu_text">Decision</big></a>
                   </div>
                 </div>
               </div>
@@ -197,7 +197,7 @@
                         <td>{{x.lot_size}}</td>
                         <td>{{x.number_of_lot}}</td>
                         <td>{{x.default_label}}</td>
-                        <td><button ng-click="deleteQuantity({{x.quantity_id}})">Delete</button></td>
+                        <td><button ng-click="deleteQuantity(x.quantity_id)">Delete</button></td>
                       </tr>
                     </tbody>
                   </table>
@@ -211,7 +211,7 @@
                         <th>File name</th><th>File type</th><th></th>
                       </thead>
                       <tr ng-repeat="file in files">                      
-                        <td>{{file.name}}</td><td>{{file.type}}</td><td><i class="fas fa-times" ng-click="deleteFile(scan, 1)"></i></td>
+                        <td>{{file.name}}</td><td>{{file.type}}</td><td><i class="fas fa-times" ng-click="deleteFile(file.name)"></i></td>
                       </tr>
                     </table>
                   </div>

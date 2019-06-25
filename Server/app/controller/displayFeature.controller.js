@@ -161,7 +161,7 @@ app.controller('DisplayFeatures', function($scope, $http, config) {
           var storeType = response.data[0].adress_id.substr(0,9);
           var storeId = response.data[0].adress_id.substr(11);
           //document.getElementById("pdfReader").src = 'http://'+scan_url+':'+scan_port+'dcme/v1/alfresco/s/api/node/workspace/SpacesStore'+storeId+'/content?a=false&alf_ticket='+ticket
-          document.getElementById("pdfReader").src = 'http://'+alf_url+':'+alf_port+'/alfresco/s/api/node/workspace/SpacesStore'+storeId+'/content?a=false&alf_ticket='+ticket
+          document.getElementById("pdfReader").src = 'http://'+alf_url+':'+alf_port+'/alfresco/s/api/node/workspace'+storeId+'/content?a=false&alf_ticket='+ticket
         })
       })
     }

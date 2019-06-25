@@ -32,7 +32,7 @@ app.controller('NewFeatures', function($scope, $http, config) {
     $http.post('http://'+url+':'+port+'/newFeatures/' + project, body).then(function(response) {
       console.log(JSON.stringify(response.data))
       console.log(JSON.stringify($scope.selectedFile))
-      if($scope.selectedFile != undefined){
+      if($scope.selectedFile.length >0){
         var fileBody = '{"files":['
         for(i=0; i<$scope.selectedFile.length; i++){
           fileBody += '{"file":"'+$scope.selectedFile[i].document_name+'"},'
@@ -46,6 +46,8 @@ app.controller('NewFeatures', function($scope, $http, config) {
             window.location.href = "NewFeatures.html?"+project;
           }
         })
+      } else {
+        window.location.href = "DisplayProject.html?"+project;
       }
     });
   } 

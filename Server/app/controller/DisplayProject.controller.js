@@ -8,6 +8,9 @@ app.controller('DisplayProject', function($scope, $http, config) {
   var project = getProject();
   document.getElementById("addNewFeature").href="NewFeatures.html?" + project;
   document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
+  document.getElementById("acceptationText").href = "AcceptReject.html?" + project;
+
+
   $http.get('http://'+url+':'+port+'/getProject/' + project, 
   {
     headers : 
@@ -39,20 +42,56 @@ app.controller('DisplayProject', function($scope, $http, config) {
 
   });
 
+  $http.get('http://'+url+':'+port+'/getQuantities/'+project).then(function(response){
+        $scope.displayQuantity = response.data;
+        $scope.quantity = 0;
+        $scope.lot_size = "";
+        $scope.nbr_of_lot = 0;
+        $scope.default_label = "";
+      })
+
   $http.get('http://'+url+':'+port+'/getUserCompany').then(function(response){
     $scope.User = response.data.companies[0].company;
   })
 
-  $scope.deleteFile = function(fileName, type){
-    if (type==1){
+  $scope.deleteFile = function(fileName){
+
       $http.delete('http://'+url+':'+port+'/deleteFile/'+fileName+'/'+project).then(function(reponse){
         refreshDocuments();
       })
-    } else {
-      $http.delete('http://'+url+':'+port+'/deleteFile/'+fileName+'/'+project).then(function(reponse){
-        refreshDocuments();
-      })
+  }
+
+  $scope.lotSize = function()
+  {
+    if($scope.quantity != undefined && $scope.nbr_of_lot != undefined) {
+      $scope.lot_size = $scope.quantity / ($scope.nbr_of_lot);
     }
+  }
+
+  $scope.AddQuantity = function(){
+    var body = '{"quantity": { "quantity":' + $scope.quantity + ', "lot_size": '+ $scope.lot_size + ', "number_of_lot": '+ $scope.nbr_of_lot +', "default_label": "'+ $scope.default_label +'"}}'
+    $http.post('http://'+url+':'+port+'/newQuantity/'+project, body).then(function(response){
+      $http.get('http://'+url+':'+port+'/getQuantities/'+project).then(function(response){
+        $scope.displayQuantity = response.data;
+        $scope.quantity = 0;
+        $scope.lot_size = "";
+        $scope.nbr_of_lot = 0;
+        $scope.default_label = "";
+      })
+    })
+  }
+
+  $scope.deleteQuantity = function(id){
+    $http.delete('http://'+url+':'+port+'/deleteQuantity/'+id).then(function(response){
+       $http.get('http://'+url+':'+port+'/getQuantities/'+project).then(function(response){
+        $scope.displayQuantity = response.data;
+        $scope.quantity = 0;
+        $scope.lot_size = "";
+        $scope.nbr_of_lot = 0;
+        $scope.default_label = "";
+        alert('row deleted');
+      })
+    })
   }
 
   $scope.displayFileName = function(){
@@ -63,10 +102,10 @@ app.controller('DisplayProject', function($scope, $http, config) {
       var str = document.getElementById('files').files[i].name
       var n = str.indexOf(".");
       if (str.substr(n+1) == "stp" || str.substr(n+1)=="step" || str.substr(n+1)=="stl"){
-        scan.push(document.getElementById('files').files[i].name)
+        files.push({name: document.getElementById('files').files[i].name, type: str.substr(n+1).toUpperCase()})
         upload3DScan(document.getElementById('files').files[i], project);
       } else {
-        files.push(document.getElementById('files').files[i].name)
+        files.push({name: document.getElementById('files').files[i].name, type: str.substr(n+1).toUpperCase()})
         uploadDCME(document.getElementById('files').files[i]);
       }
     }
@@ -92,48 +131,43 @@ app.controller('DisplayProject', function($scope, $http, config) {
   }
 
   function uploadDCME(file){
-   /* $http.get('http://'+url+':'+port+'/getProjectDCMEId/'+project).then(function(responseID){
+    $http.get('http://'+url+':'+port+'/getProjectDCMEId/'+project).then(function(responseID){
       var destination = responseID.data[0].dcme_folder
       $http.get('http://'+url+':'+port+'/getTicket').then(function(response){
-        var ticket = response.data*/
+        var ticket = response.data
 
         // uploading file
-        //var form = new FormData();
-        //form.append('filedata', file);
-        //form.append('destination','workspace://SpacesStore/'+destination)
-        /*var uploadDCMEUrl = 'http://'+alf_url+':'+alf_port+'/alfresco/service/api/upload?alf_ticket='+ticket;
+        var form = new FormData();
+        form.append('filedata', file);
+        form.append('destination','workspace://SpacesStore/'+destination)
+        var uploadDCMEUrl = 'http://'+alf_url+':'+alf_port+'/alfresco/service/api/upload?alf_ticket='+ticket;
 
         $http.post(uploadDCMEUrl, form, {
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
         }).then(function(responseNode){
-          console.log('nodeRef: '+responseNode.data.nodeRef);*/
-          body='{"document_name": "'+ file.name +'", "type":"DCME", "nodeRef":"workspace://SpacesStore/ef77efc3-8484-40d3-ac4b-c7648f518264"}'
+          console.log('nodeRef: '+responseNode.data.nodeRef);
+          body='{"document_name": "'+ file.name +'", "type":"DCME", "nodeRef":"'+responseNode.data.nodeRef+'"}'
           $http.get('http://'+url+':'+port+'/getProject/'+project).then(function(responsePro){
             $http.post('http://'+url+':'+port+'/newFile/' + responsePro.data.project.project_id, body).then(function(response){
               console.log(file.name + " documents saved!!!");
             })
           })
-       // })
-      //})
-    //})
+        })
+      })
+    })
   }
 
   function refreshDocuments(){
     $http.get('http://'+url+':'+port+'/getProjectFiles/'+project).then(function(response){
       console.log(response.data);
       var files = new Array;
-      var scan = new Array;
-      for (i=0; i<response.data.length; i++){
+     for (i=0; i<response.data.length; i++){
         var str = response.data[i].document_name;
         var n = str.indexOf(".");
-        if (str.substr(n+1) == "stp" || str.substr(n+1)=="step" || str.substr(n+1)=="stl"){
-          scan.push(response.data[i])
-        } else {
-          files.push(response.data[i])
-        }
+          files.push({name: response.data[i].document_name, type: str.substr(n+1).toUpperCase()})
       }
-      $scope.scans = scan;
+      console.log(files)
       $scope.files = files;
     })
   }

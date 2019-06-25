@@ -14,9 +14,13 @@ app.controller('postNewProject', function($scope, $http, config) {
     $scope.User = response.data.companies[0].company;
   })
 
-  $scope.showQuantity = function(){
-    window.open('http://'+url+':'+port+'/Vapp1/Quantity.html');
-  }
+  $http.get('http://'+url+':'+port+'/getQuantities').then(function(response){
+    $scope.displayQuantity = response.data;
+    $scope.quantity = 0;
+    $scope.lot_size = "";
+    $scope.nbr_of_lot = 0;
+    $scope.default_label = "";
+  })
 
   $scope.submitProject = function() 
   {
@@ -67,6 +71,39 @@ app.controller('postNewProject', function($scope, $http, config) {
     $scope.files = files;
   }
 
+  $scope.lotSize = function()
+  {
+    if($scope.quantity != undefined && $scope.nbr_of_lot != undefined) {
+      $scope.lot_size = $scope.quantity / ($scope.nbr_of_lot);
+    }
+  }
+
+  $scope.AddQuantity = function(){
+    var body = '{"quantity": { "quantity":' + $scope.quantity + ', "lot_size": '+ $scope.lot_size + ', "number_of_lot": '+ $scope.nbr_of_lot +', "default_label": "'+ $scope.default_label +'"}}'
+    $http.post('http://'+url+':'+port+'/newQuantity', body).then(function(response){
+      $http.get('http://'+url+':'+port+'/getQuantities').then(function(response){
+        $scope.displayQuantity = response.data;
+        $scope.quantity = 0;
+        $scope.lot_size = "";
+        $scope.nbr_of_lot = 0;
+        $scope.default_label = "";
+      })
+    })
+  }
+
+  $scope.deleteQuantity = function(id){
+    $http.delete('http://'+url+':'+port+'/deleteQuantity/'+id).then(function(response){
+       $http.get('http://'+url+':'+port+'/getQuantities').then(function(response){
+        $scope.displayQuantity = response.data;
+        $scope.quantity = 0;
+        $scope.lot_size = "";
+        $scope.nbr_of_lot = 0;
+        $scope.default_label = "";
+        alert('row deleted');
+      })
+    })
+  }
+
   $scope.customerInformation = function(company)
   {
     $http.get('http://'+url+':'+port+'/getCompanyInformation/' + company).then(function(response) {
@@ -92,7 +129,7 @@ app.controller('postNewProject', function($scope, $http, config) {
   }
 
   function uploadDCME(file, project, destination){
-    /*console.log(file)
+    console.log(file)
     $http.get('http://'+url+':'+port+'/getTicket').then(function(response){
       var ticket = response.data
 
@@ -107,15 +144,13 @@ app.controller('postNewProject', function($scope, $http, config) {
         headers: {'Content-Type': undefined}
       }).then(function(responseNode){
         console.log(responseNode.data.nodeRef);
-        body='{"document_name": "'+ file.name +'", "type":"DCME", "nodeRef":"'+responseNode.data.nodeRef+'"}'*/
+        body='{"document_name": "'+ file.name +'", "type":"DCME", "nodeRef":"'+responseNode.data.nodeRef+'"}'
         body='{"document_name": "'+ file.name +'", "type":"DCME", "nodeRef":"workspace://SpacesStore/ef77efc3-8484-40d3-ac4b-c7648f518264"}'
         $http.post('http://'+url+':'+port+'/newFile/' + project, body).then(function(response){
           console.log(file.name + " documents saved!!!");
         })
-      /*})
+      })
       
     })
-  }*/
-//});
-}
+  }
 });

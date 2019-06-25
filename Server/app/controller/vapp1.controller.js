@@ -312,7 +312,11 @@ exports.getProjectInformation = function(req, res) {
 
 exports.getCompanies = function (req, res) {
   var user = req.session.passport.user;
-  query = 'SELECT DISTINCT company FROM customer C JOIN users U on C.customer_id=U.customer WHERE user_id='+user+';'
+  if(req.user.role=="guest"){
+    query = 'SELECT DISTINCT company FROM customer C JOIN users U on C.customer_id=U.customer WHERE user_id='+user+';'
+  } else {
+    query = 'SELECT DISTINCT company FROM customer'
+  }
   odbcConnector(query, function(result) {
     var row = '{"companies": [';
     for (var i = 0; i < result.length; i++) {
@@ -465,21 +469,9 @@ exports.getProductInformation = function(req, res) {
 exports.getQuantities = function(req, res)
 {
   var project = req.params.project;
-  var row = '{"quantities":[ ';
   query = 'SELECT quantity_id, Q.quantity , lot_size, number_of_lot, default_label FROM product_quantity Q join project P on Q.project = P.project_id WHERE project_name = "' + project + '";'
   odbcConnector(query, function(result){
-    for (var i = 0; i < result.length; i++) {
-      row = row + '{"quantity_id":"' + result[i].quantity_id + '",'
-      row = row + '"quantity": "' + result[i].quantity + '",'
-      row = row + '"lot_size":"' + result[i].lot_size + '",'
-      row = row + '"number_of_lot":"' + result[i].number_of_lot + '",'
-      row = row + '"default_label":"' + result[i].default_label + '"},'
-    }
-    row = row.substr(0,row.length - 1);
-    row = row + ']}'
-
-    res.write(row);
-    res.end();
+    res.send(result);
   })
 }
 
@@ -494,7 +486,8 @@ exports.getQuantitiesWithoutProject = function(req, res){
 exports.newQuantity = function(req, res){
   var project = req.params.project;
   var bodyquantity = req.body.quantity;
-  query = 'INSERT INTO product_quantity(quantity, lot_size, number_of_lot, default_label, project) VALUES (' + bodyquantity.quantity + ', ' + bodyquantity.lot_size + ', ' + bodyquantity.number_of_lot + ', "' + bodyquantity.default_label + '", (SELECT project_id FROM project WHERE project_name = "'+ project +'"))'
+  var user = req.user.id;
+  query = 'INSERT INTO product_quantity(quantity, lot_size, number_of_lot, default_label, project, user) VALUES (' + bodyquantity.quantity + ', ' + bodyquantity.lot_size + ', ' + bodyquantity.number_of_lot + ', "' + bodyquantity.default_label + '", (SELECT project_id FROM project WHERE project_name = "'+ project +'"),'+user+')'
   odbcConnector(query, function(){
     res.write("quantity added!!!!");
     res.end();
@@ -515,7 +508,7 @@ exports.deleteQuantity = function(req, res){
   var user = req.user.id;
   var query = 'SELECT user FROM product_quantity WHERE quantity_id = '+quantity_id
   odbcConnector(query, function(result){
-    if(result[0].user == user){
+    if(result[0].user == user || req.user.role=='admin' || req.user.role=='APR' || req.user.role=='TARDY'){
       query = 'DELETE FROM product_quantity WHERE quantity_id = ' + quantity_id
       odbcConnector(query, function(resu){
         res.send('quantity deleted!!!!')
@@ -634,7 +627,7 @@ exports.deleteFile = function(req, res){
   var file = req.params.file;
   var project = req.params.project;
   var user = req.user.customer
-  var query='DELETE FROM documents WHERE document_name="'+file+'" AND project=(SELECT project_id FROM project WHERE project_name="'+project+'" AND customer='+user+')';
+  var query='DELETE FROM documents WHERE document_name="'+file+'" AND project=(SELECT project_id FROM project WHERE project_name="'+project+'")';
   odbcConnector(query, function(result){
     res.send('document "'+file+'" delted with success');
   })
@@ -711,7 +704,7 @@ exports.getFileIdProject = function(req, res){
 exports.getProjectDCMEId = function(req, res){
   var project = req.params.project;
   var user = req.user.customer;
-  var query = 'SELECT dcme_folder FROM project WHERE project_name="'+project+'" AND customer='+user
+  var query = 'SELECT dcme_folder FROM project WHERE project_name="'+project+'"'
   console.log(query)
   odbcConnector(query, function(result){
     res.send(JSON.stringify(result));
@@ -824,7 +817,6 @@ exports.postDCMEId = function(req, res){
 }
 
 function rankingMark (callback){
-  var project =  req.params.project;
   var min = 50;
   var max = 90;
   var mark = Math.random() * (max - min) + min;
@@ -842,7 +834,8 @@ function getIdFolder(company, parentid, callback){
     }
   };
 
-  const bodyLogin = '{"username":"admin", "password":"ADMIN"}'
+  //const bodyLogin = '{"username":"admin", "password":"ADMIN"}'
+  const bodyLogin = '{"username":"admin", "password":"admin"}'
 
   const loginCallback = function(response) {
     console.log('inside')
@@ -911,8 +904,8 @@ exports.getTicket = function (req, res){
     }
   };
 
-  const bodyLogin = '{"username":"admin", "password":"ADMIN"}'
-
+  //const bodyLogin = '{"username":"admin", "password":"ADMIN"}'
+  const bodyLogin = '{"username":"admin", "password":"admin"}'
   const loginCallback = function(response) {
     let str = '';
     var tamp;
@@ -951,7 +944,8 @@ function DCMEfolder(body, callback){
     }
   };
 
-  const bodyLogin = '{"username":"admin", "password":"ADMIN"}'
+  //const bodyLogin = '{"username":"admin", "password":"ADMIN"}'
+  const bodyLogin = '{"username":"admin", "password":"admin"}'
 
   const loginCallback = function(response) {
     let str = '';
