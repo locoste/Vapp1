@@ -24,8 +24,8 @@ app.controller('postNewProject', function($scope, $http, config) {
 
   $scope.submitProject = function() 
   {
+    if($scope.projectName != undefined && $scope.description != undefined && $scope.delivery != undefined && $scope.company != undefined){
     data = '{"project": {"projectName": "' + $scope.projectName + '","projectDescription": "'+ $scope.description +'","expectedDelivery": "'+ $scope.delivery +'","status": "Submited","customer": "'+ $scope.company +'"  }}';
-    
     $http.post('http://'+url+':'+port+'/newProject', data).then(function(response) {
       var result='one of your project already named: '+$scope.projectName
       if(response.data!=result){
@@ -52,6 +52,9 @@ app.controller('postNewProject', function($scope, $http, config) {
         window.location.assign('http://'+url+':'+port+'/Vapp1/Accueil.html')
       }
     });
+  } else {
+    alert("You have not fill all field");
+  }
   }
 
 

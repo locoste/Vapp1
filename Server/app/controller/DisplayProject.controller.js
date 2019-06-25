@@ -7,8 +7,8 @@ app.controller('DisplayProject', function($scope, $http, config) {
   const scan_port = config.scan_port;
   var project = getProject();
   document.getElementById("addNewFeature").href="NewFeatures.html?" + project;
-  document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
-  document.getElementById("acceptationText").href = "AcceptReject.html?" + project;
+  //document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
+  //document.getElementById("acceptationText").href = "AcceptReject.html?" + project;
 
 
   $http.get('http://'+url+':'+port+'/getProject/' + project, 
@@ -187,19 +187,6 @@ app.controller('DisplayProject', function($scope, $http, config) {
 
   }).then(function(response) {
     $scope.featuresInformation = response.data.features;
-    /*for (i = 0; i < response.data.features.length; i++)
-    {
-      if (response.data.features[i].label == "null" | response.data.features[i].attribution == "null" | response.data.features[i].heat_treatment == "null" | response.data.features[i].surface_treatment == "null" | response.data.features[i].width == "null" | response.data.features[i].manufacturing == "null" | response.data.features[i].rugosity == "null" | response.data.features[i].comments == "null" | response.data.features[i].component == "null" | response.data.features[i].compound == "null" | response.data.features[i].ratio == "null" | response.data.features[i].material == "null" | response.data.features[i].lenght == "null" | response.data.features[i].height == "null"| response.data.features[i].volume == "null" | response.data.features[i].tolerance == "null" | response.data.features[i].label == "undefined" | response.data.features[i].attribution == "undefined" | response.data.features[i].heat_treatment == "undefined" | response.data.features[i].surface_treatment == "undefined" | response.data.features[i].width == "undefined" | response.data.features[i].manufacturing == "undefined" | response.data.features[i].rugosity == "undefined" | response.data.features[i].comments == "undefined" | response.data.features[i].component == "undefined" | response.data.features[i].compound == "undefined" | response.data.features[i].ratio == "undefined" | response.data.features[i].material == "undefined" | response.data.features[i].lenght == "undefined" | response.data.features[i].height == "undefined"| response.data.features[i].volume == "undefined" | response.data.features[i].tolerance == "undefined")
-      {
-        document.getElementById("buttonforAcceptation").style.display = "none";
-        break;
-      }
-      else
-      {
-        document.getElementById("buttonforAcceptation").style.display = "inline";
-        document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
-      }
-    }*/
   });
 
   $scope.saveChangement = function()
@@ -223,24 +210,34 @@ app.controller('DisplayProject', function($scope, $http, config) {
 
       }).then(function(response) {
         $scope.featuresInformation = response.data.features;
-
-        for (i = 0; i < response.data.features.length; i++)
-        {
-          console.log(response.data.features[i].label)
-          if (response.data.features[i].label == "null" | response.data.features[i].attribution == "null" | response.data.features[i].heat_treatment == "null" | response.data.features[i].surface_treatment == "null" | response.data.features[i].width == "null" | response.data.features[i].manufacturing == "null" | response.data.features[i].rugosity == "null" | response.data.features[i].comments == "null" | response.data.features[i].component == "null" | response.data.features[i].compound == "null" | response.data.features[i].ratio == "null" | response.data.features[i].material == "null" | response.data.features[i].lenght == "null" | response.data.features[i].height == "null"| response.data.features[i].volume == "null" | response.data.features[i].tolerance == "null" | response.data.features[i].label == "undefined" | response.data.features[i].attribution == "undefined" | response.data.features[i].heat_treatment == "undefined" | response.data.features[i].surface_treatment == "undefined" | response.data.features[i].width == "undefined" | response.data.features[i].manufacturing == "undefined" | response.data.features[i].rugosity == "undefined" | response.data.features[i].comments == "undefined" | response.data.features[i].component == "undefined" | response.data.features[i].compound == "undefined" | response.data.features[i].ratio == "undefined" | response.data.features[i].material == "undefined" | response.data.features[i].lenght == "undefined" | response.data.features[i].height == "undefined"| response.data.features[i].volume == "undefined" | response.data.features[i].tolerance == "undefined")
-          {
-            document.getElementById("buttonforAcceptation").style.display = "none";
-            break;
-          }
-          else
-          {
-            document.getElementById("buttonforAcceptation").style.display = "inline";
-            document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
-          }
-        }
       });
     })
   }
+
+$scope.saveChangementDecision = function(){
+  console.log('decision')
+  compt = 0
+  for (i = 0; i < $scope.featuresInformation.length; i++)
+    {
+      if ($scope.featuresInformation[i].label == "null" | $scope.featuresInformation[i].attribution == "null" | $scope.featuresInformation[i].heat_treatment == "null" | $scope.featuresInformation[i].surface_treatment == "null" | $scope.featuresInformation[i].width == "null" | $scope.featuresInformation[i].manufacturing == "null" | $scope.featuresInformation[i].rugosity == "null" | $scope.featuresInformation[i].comments == "null" | $scope.featuresInformation[i].component == "null" | $scope.featuresInformation[i].compound == "null" | $scope.featuresInformation[i].ratio == "null" | $scope.featuresInformation[i].material == "null" | $scope.featuresInformation[i].lenght == "null" | $scope.featuresInformation[i].height == "null"| $scope.featuresInformation[i].volume == "null" | $scope.featuresInformation[i].tolerance == "null" | $scope.featuresInformation[i].label == "undefined" | $scope.featuresInformation[i].attribution == "undefined" | $scope.featuresInformation[i].heat_treatment == "undefined" | $scope.featuresInformation[i].surface_treatment == "undefined" | $scope.featuresInformation[i].width == "undefined" | $scope.featuresInformation[i].manufacturing == "undefined" | $scope.featuresInformation[i].rugosity == "undefined" | $scope.featuresInformation[i].comments == "undefined" | $scope.featuresInformation[i].component == "undefined" | $scope.featuresInformation[i].compound == "undefined" | $scope.featuresInformation[i].ratio == "undefined" | $scope.featuresInformation[i].material == "undefined" | $scope.featuresInformation[i].lenght == "undefined" | $scope.featuresInformation[i].height == "undefined"| $scope.featuresInformation[i].volume == "undefined" | $scope.featuresInformation[i].tolerance == "undefined")
+      {
+        compt=1
+        var decision = confirm("All fields are not completed for feature: "+$scope.featuresInformation[i].part_reference);
+        if (decision == true) {
+          alert("Continue to decision");
+          $scope.saveChangement();
+          window.location.assign("AcceptReject.html?" + project)
+        } else {
+          alert("Completed all features");
+        }
+        break;
+      }
+    }
+    if(compt = 0){
+    $scope.saveChangement();
+    window.location.assign("AcceptReject.html?" + project)
+  }
+}
 
   function getProject()
   {
