@@ -1,3 +1,7 @@
+a {
+  color:white;
+}
+
 html {
   height: 100%;
   margin: 0px;
@@ -14,8 +18,7 @@ body {
   background: rgb(228,228,228);
   background: linear-gradient(-15deg, rgba(228,228,228,1) 0%, rgba(255,255,255,1) 58%, rgba(255,255,255,1) 100%);
   font-family: 'Roboto', sans-serif;
-  margin-left: -16px;
-  margin-top: -16px;
+
 }
 
 
@@ -60,10 +63,10 @@ textarea {
 
 
 button {
-	background-color: #cac9ff ;
-	color: #fff;
-	border: none;
-	white-space: nowrap;
+  background-color: #cac9ff ;
+  color: #fff;
+  border: none;
+  white-space: nowrap;
   text-decoration: none;
   vertical-align: baseline;
   text-align: center;
