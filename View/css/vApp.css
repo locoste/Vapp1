@@ -2,6 +2,10 @@ a {
   color:white;
 }
 
+a:hover {
+  color: white;
+}
+
 html {
   height: 100%;
   margin: 0px;
@@ -105,9 +109,39 @@ th {
   color: white;
 }
 
+.sep_line{ 
+    margin: 10px 10px 20px 20px;
+    height: 1px;
+    background: grey;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, grey));
+}
+
+.blankspace50 {
+  height:50px;
+}
+.blankspace25 {
+  height:25px;
+}
+
+.blankspace10 {
+  height:10px;
+}
+
+.login_page {
+  background-image: url(loginpage.jpg);
+}
+
+.login_container{
+  border:1px solid grey;
+  background-color: white;
+  opacity:0.75;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px 0px #6d7d8c;
+}
+
 
 .href_button {
-  color: #fff;
+  color:white;
 }
 
 .menu_gauche {
@@ -166,6 +200,24 @@ th {
 .container-fluid {
   height: 100%;
   overflow-y: hidden;
+}
+
+.butn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Roboto;
+  color: #ffffff;
+  font-size: 14px;
+  background:  #9e9de3;
+  padding: 0px 16px;
+  text-decoration: none;
+  min-width: 100px;
+}
+
+.butn:hover {
+  background: #cac9ff;
+  text-decoration: none;
 }
 
 /*.row {
