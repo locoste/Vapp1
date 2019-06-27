@@ -7,94 +7,108 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   </head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
-<body>
+<body class="login_page">
 <div ng-app="Project">
 	<div ng-controller="NewUser">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-2">
-				<div style="width: 180px; height: 140px;">
-					<img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
-					<img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
-				</div>
-			</div>
-			<div class="col-lg-8" style="text-align: center">
-				<h1><big><big>Create User</big></big></h1>
-				<img alt="H2020_head" src="./images/bandeau.jpg">
-			</div>
-			<div class="col-lg-2">
-				<div class="row">
-					<div class="col-lg-12">
-						{{User}}
-						<img alt="user" src="./images/user.jpg" style="width: 50px; height: 50px;">
-					</div>
-					<div class="col-lg-12">
-						<img alt="message" src="./images/message.jpg" style="width: 50px; height: 50px;">
-						<a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
-						<img alt="logout" src="./images/signout.jpg" style="width: 50px; height: 50px;">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<p><big><big></big></big></p>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-offset-1 col-lg-2" style="border: 2px solid black; border-radius: 6px;">	
-				<legend> Menu </legend>
-				<div class="row">
-					<div><a href="login.html">
-						<div class="col-lg-4">
-							<img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
-						</div>
-						<div class="col-lg-6">
-							<big>Back</big>
-						</div>
-					</a></div>
-				</div>
-			</div>	
-			<div class="col-lg-8">	
-			<form>
-			    <div class="row">
-			    	<div class="col-lg-12">
-					  	<label for="Login">Login: </label>
-					  	<input id="Login" type="email" class="form-control" placeholder="example@example.com" ng-model="login" required>
-				  	</div>
-				  	<div class="col-lg-12">
-					  	<label for="password">Password: </label>
-					  	<input id="passord" type="password" class="form-control" ng-model="password" required>
-				  	</div>
-				  	<div class="col-lg-12">
-					  	<label for="repeatpassword">Repeat password: </label>
-					  	<input id="repeatpassword" type="password" class="form-control" ng-model="repeatpassword" required>
-				  	</div>
-				  	<legend>Customer: </legend>
-				  	<div class="col-lg-12">
-					  	<label for="Company">Company: </label>
-					  	<input id="Company" type="text" class="form-control" ng-model="company" required>
-				  	</div>
-				  	<div class="col-lg-12">
-					  	<label for="Contact">Contact: </label>
-					  	<input id="Contact" type="text" class="form-control" ng-model="contact" required>
-					</div>
-					<div class="col-lg-12">
-					  	<label for="Mail">Mail: </label>
-					  	<input id="Mail" type="text" class="form-control" ng-model="email" required>
-					</div>
-					<div class="col-lg-12">
-					  	<label for="Phone">Phone Number: </label>
-					  	<input id="Phone" type="text" class="form-control" ng-model="phone_number" required>
-					</div>
-				</div>
-				<center><button ng-click="createUser()">Envoyer</button></center>
-			  </div>
-			  </form>
-			  </div>
-			  <div class="col-lg-2" style="text-align: right;">
-		  	Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
-		  </div>
-		  </div>
-		</div>
+		   <div class="container">
+    		<div class="row justify-content-center blankspace50">
+    			<p></p>
+    		</div>
+    		 <div class="row justify-content-center blankspace50">
+    			<p></p>
+    		</div>
+    		</div>
+    	  <div class="container">
+    		<div class="row justify-content-center">
+    			<div class="col-lg-4 login_container" style="border:1px solid white;">
+    				<div class="row justify-content-center blankspace50">
+    					<p></p>
+    				</div>
+   				<center><i class="fas fa-user-circle fa-4x"></i></center>
+    				<div class="row justify-content-center">
+    					<center><h1>New Account</h1></center>
+    				</div>
+
+    				<div class="row justify-content-center blankspace50">
+    					<center>Please fill the following fields</center>
+    				</div>
+
+
+    				<div class="row justify-content-center">
+    					<center><input id="Login" type="email" class="form-control" placeholder="Email" ng-model="login" required style="padding-left: 10px;"></center>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<p></p>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<center><input id="passord" type="password" class="form-control" placeholder="Password" ng-model="password" required  style="padding-left: 10px;"></center>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<p></p>
+    				</div>
+
+    				<div class="row justify-content-center blankspace50">
+    					<center><input id="repeatpassword" type="password" class="form-control" placeholder="Confirm Password" ng-model="repeatpassword" required style="padding-left: 10px;"></center>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<div class="col-lg-10">
+    						<center><legend>Customer Information</legend></center>
+    					<div class="sep_line"></div>
+    					</div>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<center><input id="Company" type="text" class="form-control" placeholder="Company Name" ng-model="company" required style="padding-left: 10px;"></center>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<p></p>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<center><input id="Contact" type="text" class="form-control" placeholder="Main Contact" ng-model="contact" required style="padding-left: 10px;"></center>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<p></p>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<center><input id="Mail" type="text" class="form-control" placeholder="Contact Mail" ng-model="email" required style="padding-left: 10px;"></center>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<p></p>
+    				</div>
+
+    				<div class="row justify-content-center blankspace50">
+    					<center><input id="Phone" type="text" class="form-control" placeholder="Contact Phone" ng-model="phone_number" required style="padding-left: 10px;"></center>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<p></p>
+    				</div>
+
+    				<div class="row justify-content-center">
+    					<div class="col-lg-4">
+    					<center><button class="butn" ng-click="createUser()">Envoyer</button></center>
+    					</div>
+    					<div class="col-lg-4">
+    					<center><a href="login.html"><button class="butn">Back</button></a></center>
+    					</div>
+    				</div>
+
+    				<div class="row justify-content-center blankspace50">
+    					<p></p>
+    				</div>
+
+    			</div>
+    		</div>
+    	</div>
 	</div>
 	</div>
 </body>
