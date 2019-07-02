@@ -20,6 +20,7 @@
 
     	</div>
     	<div class="container">
+            <form method="post">
     		<div class="row justify-content-center">
     			<div class="col-lg-4 login_container" style="border:1px solid white;">
     				<div class="row justify-content-center blankspace50">
@@ -31,7 +32,7 @@
     				</div>
 
     				<div class="row justify-content-center">
-    					<center><input type="email" placeholder="Email" ng-model="login" style="padding-left: 10px;"></center>
+    					<center><input type="email" class="form-control" placeholder="Email" ng-model="login" style="padding-left: 10px;"></center>
     				</div>
 
     				<div class="row justify-content-center">
@@ -39,7 +40,7 @@
     				</div>
 
     				<div class="row justify-content-center">
-    					<center><input type="password" placeholder="Password" ng-model="password" style="padding-left: 10px;"></center>
+    					<center><input type="password" class="form-control" placeholder="Password" ng-model="password" style="padding-left: 10px;"></center>
     				</div>
 
     				<div class="row justify-content-center">
@@ -47,7 +48,7 @@
     				</div>
 
     				<div class="row justify-content-center">
-    					<button class="butn" ng-click="loginUser()">LOGIN</button>
+    					<button class="butn" ng-click="loginUser()"><a class="href_button" href="/">Login</a></button>
     				</div>
 
     				<div class="row justify-content-center">
@@ -58,7 +59,7 @@
     					<center>No account yet ? <a class="href_button" href="CreateUser.html" style="color:#5161A2;">REGISTER</a></center>
     				</div>
 
-    				<div class="row justify-content-center blankspace10">
+    				<div class="row justify-content-center blankspace25">
     					<p></p>
     				</div>
 
@@ -87,8 +88,11 @@
 
     			</div>
     		</div>
+        </form>
     	</div>
     </div>
-    </div>	
+    </div>
+    <script src="./controller/Project.js"></script>
+    <script src="./controller/LoginController.controller.js"></script>	
   </body>
   </html>
