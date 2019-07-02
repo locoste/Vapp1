@@ -1,143 +1,136 @@
 <!DOCTYPE html>
 <html>
- <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/vApp.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  </head>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <body>
-    <div ng-app="Project">
-      <div ng-controller="ProjectSummary">
-      <div class="container">
-       <div class="row">
-        <div class="col-lg-2">
-          <div style="width: 180px; height: 140px;">
-            <img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
-            <img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
-          </div>
-        </div>
-        <div class="col-lg-8" style="text-align: center">
-          <h1><big><big>Project Decision</big></big></h1>
-        <img alt="H2020_head" src="./images/bandeau.jpg">
-        </div>
-        <div class="col-lg-2">
-          <div class="row">
-            <div class="col-lg-12">
-              <a href="UserPage.html?{{User}}">{{User}}
-              <img alt="user" src="./images/user.jpg" style="width: 50px; height: 50px;"></a>
-            </div>
-            <div class="col-lg-12">
-              <img alt="message" src="./images/message.jpg" style="width: 50px; height: 50px;">
-              <a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
-              <a href="/login.html" ng-click="logout()"><img alt="logout" src="./images/signout.jpg" style="width: 50px; height: 50px;"></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  <p><big><big> </big></big></p>
-    <div class="container">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/css/vApp.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+  <div ng-app="Project">
+    <div ng-controller="ProjectSummary">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-2" style="border: 2px solid black; border-radius: 6px;"> 
-            <legend> Menu </legend>
-            <div class="row">
-              <div><a id="returnToProject" href="">
-                <div class="col-lg-12">
-                  <img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
-                  <big>Back</big>
-                </div>
-              </a></div>
-            </div>
-          </div>
-    <div class="col-lg-10">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="row">
-            <h3>
-              Project Information:
-            </h3>
-            <div class="col-lg-12"><label style="font-weight: bold; font-size: 15pt">Project :</label> {{ProjectName}}</div>
-            <div class="col-lg-12"><label style="font-weight: bold; font-size: 15pt">Customer :</label> {{Customer}}</div>
-            <table class="col-lg-4">
-              <tbody>
-                <tr style="font-weight: bold; font-size: 15pt">
-                  <td>product ref</td><td>Label</td><td>rank</td>
-                </tr>
-                <tr ng-repeat="x in projectFeatures">
-                  <td>{{x.part_reference}}</td>
-                  <td>{{x.label}}</td>
-                  <td>{{x.ranking}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <p></p>
-          </div>
-        </div>
-        <div class="col-lg-8">
-          <div class="row">
-            <div class="col-lg-6">
-              <legend>APR decision</legend>
-              <div class="col-lg-12">
-                <button id="APRAccept" ng-model="APRAccept" ng-click="inputSubmitted('2', 'APRDecision')">Accept</button>
-                <button id="APRStand" ng-model="APRStand" ng-click="inputSubmitted('1', 'APRDecision')">Stand By</button>
-                <button id="APRRefuse" ng-model="APRRefuse" ng-click="inputSubmitted('0', 'APRDecision')">Reject</button>
-                <input type="hidden" ng-model="APR_decision">
-              </div>
-              <div class="col-lg-6">
-                <label>comments:</label>
-                <input type="text" ng-model="APRComment">
-                <div>
-                  <button ng-click="inputSubmitted('', 'APRComment')">Submit</button>
+          <div class="col-lg-2"> <!-- Menu gauche -->
+            <div class="menu_gauche"> 
+              <div class="menu_text">
+                <h2 style="color:white;"> MENU </h2>
+                <div class="row">
+                  <div class="col-md-3">                
+                    <a href="DisplayAllProject.html"><i class="far fa-caret-square-left fa-2x"></i>
+                    </a></div>
+                    <div class="col-md-9">
+                      <a href="DisplayAllProject.html"><big class="menu_text">Back</big></a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <legend>TARDY decision</legend>
-              <div class="col-lg-12">
-                <button id="TARDYAccept" ng-model="TARDYAccept" ng-click="inputSubmitted('2', 'TardyDecision')">Accept</button>
-                <button id="TARDYStand" ng-model="TARDYStand" ng-click="inputSubmitted('1', 'TardyDecision')">Stand By</button>
-                <button id="TARDYRefuse" ng-model="TARDYRefuse" ng-click="inputSubmitted('0', 'TardyDecision')">Reject</button>
-                <input type="hidden" ng-model="TARDY_decision">
-              </div>
-              <div class="col-lg-6">
-                <label>comments:</label>
-                <input type="text" ng-model="TARDYComment" >
-                <div>
-                  <button ng-click="inputSubmitted('', 'TardyComment')">Submit</button>
+
+            <div class="col-lg-10">
+              <div class="row">
+                <div class="col-lg-9">
+                  <h1>PROJECT DECISION</h1>
+                </div>
+                <div class="col-lg-3">
+                  <div class="header_icons">
+                    <a class="header_a" href="UserPage.html?{{User}}">{{User}}
+                      <i class="fas fa-user-circle fa-2x"></i>
+                    </a>
+                    <a classe="header_a" href="Accueil.html"> 
+                      <i class="fas fa-home fa-2x"></i>
+                    </a>            
+                    <a class="header_a" href="/login.html" ng-click="logout()">
+                      <i class="fas fa-sign-out-alt fa-2x"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
-        </div>
-    </div>
-    <center>
-      <div id = "finalDecision" style="" class="col-lg-12">
-        <legend>Final decision</legend>
-          <div>
-            <button id="FinalAccept" ng-model="FinalAccept" ng-click="inputSubmitted('2', 'FinalDecision')">Accept</button>
-            <button id="FinalStand" ng-model="FinalStand" ng-click="inputSubmitted('1', 'FinalDecision')">Stand By</button>
-            <button id="FinalRefuse" ng-model="FinalRefuse" ng-click="inputSubmitted('0', 'FinalDecision')">Reject</button>
-            <input type="hidden" ng-model="Final_decision">
-          </div>
-          <div class="col-lg-6">
-            <label>comments:</label>
-            <input type="text" ng-model="FinalComment">
-            <div>
-            <button ng-click="inputSubmitted('', 'FinalComment')">Submit</button>
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="row">
+                    <h2>Project Information</h2>
+                    <div class="col-lg-12"><label style="font-weight: bold; font-size: 15pt">Project :</label> {{ProjectName}}</div>
+                    <div class="col-lg-12"><label style="font-weight: bold; font-size: 15pt">Customer :</label> {{Customer}}</div>
+                    <table>
+                        <thead style="font-weight: bold; font-size: 15pt">
+                          <th>Product Reference</th><th>Label</th><th>Rank</th>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="x in projectFeatures">
+                          <td>{{x.part_reference}}</td>
+                          <td>{{x.label}}</td>
+                          <td>{{x.ranking}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <p></p>
+                  </div>
+                </div>
+
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h2>APR decision</h2>
+                      <div class="col-lg-12">
+                        <button class="butn" id="APRAccept" ng-model="APRAccept" ng-click="inputSubmitted('2', 'APRDecision')">Accept</button>
+                        <button class="butn" id="APRStand" ng-model="APRStand" ng-click="inputSubmitted('1', 'APRDecision')">Stand By</button>
+                        <button class="butn" id="APRRefuse" ng-model="APRRefuse" ng-click="inputSubmitted('0', 'APRDecision')">Reject</button>
+                        <input type="hidden" ng-model="APR_decision">
+                      </div>
+                      <div class="col-lg-6">
+                        <label>Comments:</label>
+                        <input type="text" ng-model="APRComment">
+                        <div>
+                          <button class="butn" ng-click="inputSubmitted('', 'APRComment')">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <h2>TARDY decision</h2>
+                      <div class="col-lg-12">
+                        <button class="butn" id="TARDYAccept" ng-model="TARDYAccept" ng-click="inputSubmitted('2', 'TardyDecision')">Accept</button>
+                        <button class="butn" id="TARDYStand" ng-model="TARDYStand" ng-click="inputSubmitted('1', 'TardyDecision')">Stand By</button>
+                        <button class="butn" id="TARDYRefuse" ng-model="TARDYRefuse" ng-click="inputSubmitted('0', 'TardyDecision')">Reject</button>
+                        <input type="hidden" ng-model="TARDY_decision">
+                      </div>
+                      <div class="col-lg-6">
+                        <label>Comments:</label>
+                        <input type="text" ng-model="TARDYComment" >
+                        <div>
+                          <button class="butn" ng-click="inputSubmitted('', 'TardyComment')">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <center>
+                    <div id = "finalDecision" style="" class="col-lg-12">
+                      <h2>Final decision</h2>
+                      <div>
+                        <button class="butn" id="FinalAccept" ng-model="FinalAccept" ng-click="inputSubmitted('2', 'FinalDecision')">Accept</button>
+                        <button class="butn" id="FinalStand" ng-model="FinalStand" ng-click="inputSubmitted('1', 'FinalDecision')">Stand By</button>
+                        <button class="butn" id="FinalRefuse" ng-model="FinalRefuse" ng-click="inputSubmitted('0', 'FinalDecision')">Reject</button>
+                        <input type="hidden" ng-model="Final_decision">
+                      </div>
+                      <div class="col-lg-6">
+                        <label>Comments:</label>
+                        <input type="text" ng-model="FinalComment">
+                        <div>
+                          <button class="butn" ng-click="inputSubmitted('', 'FinalComment')">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </center>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </center>
-  </div>
-</div>
-  </div>
-    <div class="col-lg-12" style="text-align: right;">
-      Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
     </div>
-  </div>
-</div>
-</div>
-</div>
   </body>
   <script src="./controller/Project.js"></script>
   <script src="./controller/decision.controller.js"></script>

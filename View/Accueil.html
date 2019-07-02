@@ -10,7 +10,7 @@
 <body>
   <div ng-app="Project">
     <div ng-controller="Accueil">
-      <!--<div class="container-fluid">-->
+      <div class="container-fluid">
         <div class="row">
           <div class="col-lg-2"> <!-- Menu gauche -->
             <div class="menu_gauche"> 
@@ -18,15 +18,16 @@
 
               <div class="row">
                 <div class="col-lg-3">
-                  <a href="CreateProject.html"><i class="far fa-plus-square fa-3x"></i></a>
+                  <a href="CreateProject.html"><i class="far fa-plus-square fa-2x"></i></a>
                 </div>
                 <div class="col-lg-9">
                   <a href="CreateProject.html"> <big>Create project</big></a>
                 </div>
               </div>
+              <p></p>
               <div class="row">
                 <div class="col-lg-3">
-                  <a href="DisplayAllProject.html"><i class="fas fa-search fa-3x"></i></a>
+                  <a href="DisplayAllProject.html"><i class="fas fa-search fa-2x"></i></a>
                 </div>
                 <div class="col-lg-9">
                   <a href="DisplayAllProject.html"><big>On going project</big></a>
@@ -35,29 +36,28 @@
             </div>
           </div>
           <div class="col-lg-9">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-9">
-                 <h1>WELCOME TO YOUR PERSONAL SPACE</h1>
-               </div>
-               <div class="col-md-3">
-                <div class="header_icons">
-                  <a class="header_a" href="UserPage.html?{{User}}">{{User}}
-                    <i class="fas fa-user-circle fa-2x"></i>
-                  </a>
-                  <a classe="header_a" href="Accueil.html"> 
-                    <i class="fas fa-home fa-2x"></i>
-                  </a>            
-                  <a class="header_a" href="/login.html" ng-click="logout()">
-                    <i class="fas fa-sign-out-alt fa-2x"></i>
-                  </a>
-                </div>
+            <div class="row">
+              <div class="col-lg-9">
+               <h1>WELCOME TO YOUR PERSONAL SPACE</h1>
+             </div>
+             <div class="col-lg-3">
+              <div class="header_icons">
+                <a class="header_a" href="UserPage.html?{{User}}">{{User}}
+                  <i class="fas fa-user-circle fa-2x"></i>
+                </a>
+                <a classe="header_a" href="Accueil.html"> 
+                  <i class="fas fa-home fa-2x"></i>
+                </a>            
+                <a class="header_a" href="/login.html" ng-click="logout()">
+                  <i class="fas fa-sign-out-alt fa-2x"></i>
+                </a>
               </div>
             </div>
-            <div class="row">
-              <img style="width: 800px; height: 448px;" alt="H2020" src="./images/vf-OS.jpg">
-            </div>
           </div>
+          <div class="row">
+            <img style="width: 800px; height: 448px;" alt="H2020" src="./images/vf-OS.jpg">
+          </div>
+          
         </div>
       </div>
       <div class="row">
@@ -68,9 +68,9 @@
         </div>
       </div>
     </div>
-    <!--</div>-->
   </div>
-  <script src="./controller/Project.js"></script>
-  <script src="./controller/accueil.controller.js"></script>
+</div>
+<script src="./controller/Project.js"></script>
+<script src="./controller/accueil.controller.js"></script>
 </body>
 </html>
