@@ -22,7 +22,7 @@ app.controller('postNewProject', function($scope, $http, config) {
     $scope.default_label = "";
   })
 
-  $scope.deleteQuantity = function()
+  $scope.deleteBackQuantity = function()
   {
     $http.delete('http://'+url+':'+port+'/deleteQuantityBackProject').then(function(response){})
   }
