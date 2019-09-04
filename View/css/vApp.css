@@ -3,7 +3,8 @@ a {
 }
 
 a:hover {
-  color: #CED5E8;
+  color: white;
+  text-decoration: none;
 }
 
 html {
@@ -20,7 +21,8 @@ header {
 
 body {
 
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
+  height: 100%;
 
 }
 
@@ -29,7 +31,7 @@ h1 {
   color: #5161A2;
   text-align: left;
   vertical-align: middle;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 24pt;
   padding-bottom: 10px;
 }
@@ -37,7 +39,7 @@ h1 {
 h2 {
   color: #5161A2;
   text-align: left;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 18pt;
   padding-bottom: 10px;
 }
@@ -45,7 +47,7 @@ h2 {
 label {
   font-weight: bold;
   color: #5161A2;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-size: 12pt;
 }
 
@@ -108,8 +110,17 @@ th {
   color: white;
 }
 
+.col_menu:hover{
+  padding-left: 10px;
+  width: 105%;
+}
+
+.row {
+  margin: 0px;
+}
+
 .container-fluid{
-  margin-left: -16px;
+  margin-left: -30px;
 }
 
 .sep_line{ 
@@ -141,7 +152,6 @@ th {
   box-shadow: 0px 0px 20px 0px #6d7d8c;
 }
 
-
 .href_button {
   color:white;
 }
@@ -149,12 +159,21 @@ th {
 .menu_gauche {
   /*background: rgb(27,32,50);
   background: linear-gradient(40deg, rgba(27,32,50,1) 0%, rgba(40,40,79,1) 65%, rgba(58,99,133,1) 100%);*/
-  background-color: #384261;
+  background-color: #292B39;
+  height: 100%;
+  width: 105%;
+  margin: 0px;
+  padding-left: 30px;
+  padding-top: 15px;
+  /*box-shadow: 0px 0px 20px 0px #1A2A3A;*/
+}
+
+.menu_gauche_bas {
+  background-color: #D4EBF5;
   margin: 0px;
   height: 100%;
-  padding-left: 50px;  
+  padding-left: 25px;  
   padding-top: 10px;
-  /*box-shadow: 0px 0px 20px 0px #1A2A3A;*/
 }
 
 .menu_text {
@@ -216,7 +235,7 @@ th {
 
 
 .header_icons {
-  padding-top: 5px;
+  padding-top: 12px;"
   float: right
 }
 
