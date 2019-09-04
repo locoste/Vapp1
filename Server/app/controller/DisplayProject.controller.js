@@ -7,7 +7,7 @@ app.controller('DisplayProject', function($scope, $http, config) {
   const scan_port = config.scan_port;
   var project = getProject();
   document.getElementById("addNewFeature").href="NewFeatures.html?" + project;
-  document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
+  //document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
   //document.getElementById("acceptationText").href = "AcceptReject.html?" + project;
 
 
@@ -215,10 +215,10 @@ app.controller('DisplayProject', function($scope, $http, config) {
   }
 
 $scope.saveChangementDecision = function(){
-  console.log('decision')
   compt = 0
   for (i = 0; i < $scope.featuresInformation.length; i++)
     {
+      console.log(i)
       if ($scope.featuresInformation[i].label == "null" | $scope.featuresInformation[i].attribution == "null" | $scope.featuresInformation[i].heat_treatment == "null" | $scope.featuresInformation[i].surface_treatment == "null" | $scope.featuresInformation[i].width == "null" | $scope.featuresInformation[i].manufacturing == "null" | $scope.featuresInformation[i].rugosity == "null" | $scope.featuresInformation[i].comments == "null" | $scope.featuresInformation[i].component == "null" | $scope.featuresInformation[i].compound == "null" | $scope.featuresInformation[i].ratio == "null" | $scope.featuresInformation[i].material == "null" | $scope.featuresInformation[i].lenght == "null" | $scope.featuresInformation[i].height == "null"| $scope.featuresInformation[i].volume == "null" | $scope.featuresInformation[i].tolerance == "null" | $scope.featuresInformation[i].label == "undefined" | $scope.featuresInformation[i].attribution == "undefined" | $scope.featuresInformation[i].heat_treatment == "undefined" | $scope.featuresInformation[i].surface_treatment == "undefined" | $scope.featuresInformation[i].width == "undefined" | $scope.featuresInformation[i].manufacturing == "undefined" | $scope.featuresInformation[i].rugosity == "undefined" | $scope.featuresInformation[i].comments == "undefined" | $scope.featuresInformation[i].component == "undefined" | $scope.featuresInformation[i].compound == "undefined" | $scope.featuresInformation[i].ratio == "undefined" | $scope.featuresInformation[i].material == "undefined" | $scope.featuresInformation[i].lenght == "undefined" | $scope.featuresInformation[i].height == "undefined"| $scope.featuresInformation[i].volume == "undefined" | $scope.featuresInformation[i].tolerance == "undefined")
       {
         compt=1
@@ -233,7 +233,7 @@ $scope.saveChangementDecision = function(){
         break;
       }
     }
-    if(compt = 0){
+    if(compt == 0){
     $scope.saveChangement();
     window.location.assign("AcceptReject.html?" + project)
   }
