@@ -9,6 +9,7 @@ app.controller('NewUser', function($scope, $http, config) {
       body = '{"company":"' + $scope.company + '", "contact":"' + $scope.contact + '", "email":"' + $scope.email + '", "phone_number":"' + $scope.phone_number + '", "login":"' + $scope.login + '", "password":"' + $scope.password + '"}'
       $http.post('http://'+url+':'+port+'/createUser', body).then(function(response){
         console.log(response.data)
+        alert('Account successfully created')
         window.location.assign('login.html');
         })
     }

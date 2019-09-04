@@ -182,7 +182,7 @@ exports.getUserInformation = function(req, res){
 }
 
 exports.findAllProject = function(req, res) {
-	var user = req.session.passport.user;
+  var user = req.session.passport.user;
   var role = req.user.role
   if(role=='admin' || role=='APR' || role=='TARDY'){
     var query = 'SELECT project_name, project_description, C.company, expected_delivery, creation_date FROM Project P join Customer C on P.customer = C.customer_id JOIN users U on U.customer=C.customer_id ORDER BY creation_date, expected_delivery DESC'
@@ -217,7 +217,7 @@ exports.getprojectid = function(req, res) {
 }
 
 exports.getFeaturesForProject = function(req, res) {
-	var project = req.params.project;
+  var project = req.params.project;
   checkPermission(req, res, function(){
    query = 'select * FROM features F JOIN project PR on F.project=PR.project_id WHERE project_name = "' + project +'";'
    odbcConnector(query, function(result) {
@@ -290,8 +290,8 @@ exports.getFeatures = function(req, res) {
 }
 
 exports.getProjectInformation = function(req, res) {
-	var project = req.params.project;
-	query = 'SELECT project_id, project_name, project_description,internal_reference, status, company, contact, email, phone_number, expected_delivery '
+  var project = req.params.project;
+  query = 'SELECT project_id, project_name, project_description,internal_reference, status, company, contact, email, phone_number, expected_delivery '
   + 'FROM Project P join Customer C on P.customer = C.customer_id WHERE project_name = "'+ project +'"';
   odbcConnector(query, function(result) {
     row = '{"project":{ "project_id":"' + result[0].project_id + '", '

@@ -19,7 +19,7 @@ app.controller('UserPage', function($scope, $http, config) {
   {
     if($scope.password==$scope.repassword){
       var body = '{"login":"'+$scope.login+'", "company":"'+$scope.company+'", "password":"'+$scope.password+'","contact":"'+$scope.contact+'","email":"'+$scope.email+'","phone_number":"'+$scope.phone_number+'"}'
-      $http.post('http://'+url+':'+port+'/updateUser', body).then(alert('user upadted with success'))
+      $http.post('http://'+url+':'+port+'/updateUser', body).then(alert('User updated with success'))
     }
     else
     {

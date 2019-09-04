@@ -1,5 +1,5 @@
 app.controller('ProjectSummary', function($scope, $http, config) {
-  const url = config.api_url;
+  const url = config.api_url; 
   const port = config.api_port;
   project = getProject();
   document.getElementById("returnToProject").href="DisplayProject.html?" + project

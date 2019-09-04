@@ -7,7 +7,7 @@ app.controller('DisplayProject', function($scope, $http, config) {
   const scan_port = config.scan_port;
   var project = getProject();
   document.getElementById("addNewFeature").href="NewFeatures.html?" + project;
-  //document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
+  document.getElementById("acceptationButton").href = "AcceptReject.html?" + project;
   //document.getElementById("acceptationText").href = "AcceptReject.html?" + project;
 
 
