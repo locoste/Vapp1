@@ -520,7 +520,8 @@ exports.deleteQuantity = function(req, res){
 }
 
 exports.deleteQuantityBackProject = function(req, res){
-  var query = 'DELETE FROM quantity WHERE project is null'
+  var query = 'DELETE FROM product_quantity WHERE project is null'
+  console.log(query)
   odbcConnector(query, function(){
     res.send('quantity deleted');
   })
