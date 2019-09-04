@@ -68,10 +68,10 @@
               </div>
               <button ng-click="AddQuantity()">Add</button>
                <table class="col-lg-8">
+                 <thead style="font-weight: bold; font-size: 15pt">
+                    <th></th><th>Quantity</th><th>Lot Size</th><th>Nbr Of Lot</th><th>Comments</th>
+                  </thead>
                 <tbody style="text-align: center;">
-                  <tr style="font-weight: bold; font-size: 15pt">
-                    <td></td><td>Quantity</td><td>Lot Size</td><td>Nbr Of Lot</td><td>Comments</td>
-                  </tr>
                   <tr ng-repeat="x in displayQuantity">
                     <td type="hidden">{{quantity_id}}</td>
                     <td>{{x.quantity}}</td>

@@ -10,206 +10,117 @@
 <body>
   <div ng-app="Project">
     <div ng-controller="DisplayProjectUser">
-      <p><big><big></big></big></p>
-      <header>
-        PROJECT INFORMATION
-      </header>
-      <div class="container-fluid">
+    <div class="container">
+     <div class="row">
+      <div class="col-lg-2">
+        <div style="width: 180px; height: 140px;">
+          <img style="width: 180px; height: 70px;" alt="TARDY logo" src="./images/tardy-logo.jpg">
+          <img style="width: 180px; height: 70px;" alt="APR logo" src="./images/APR-QD.jpg">
+        </div>
+      </div>
+      <div class="col-lg-8" style="text-align: center">
+        <h1><big><big>Project Information</big></big></h1>
+        <img alt="H2020_head" src="./images/bandeau.jpg">
+      </div>
+      <div class="col-lg-2">
         <div class="row">
-          <div class="col-lg-2"> <!-- Menu gauche -->
-            <div class="menu_gauche"> 
-              <h2 class="menu_text"> MENU </h2>
-              <div class="row">
-                <div class="col-md-3">                
-                  <a href="DisplayAllProject.html"><i class="far fa-caret-square-left fa-3x"></i>
-                  </a></div>
-                  <div class="col-md-9">
-                    <a href="DisplayAllProject.html"><big class="menu_text">Back</big></a>
-                  </div>
-                </div>
-                <p></p>
-                <div class="row">
-                  <div class="col-md-3">
-                    <div ng-click="saveChangement()"><a href="DisplayAllProject.html"> <i class="far fa-save fa-3x"></i>
-                    </a></div>
-                  </div>
-                  <div class="col-md-9">
-                    <a ng-click="saveChangement()" href="DisplayAllProject.html"><big class="menu_text">Save</big> </a>
-                  </div>
-                </div>
-                <p></p>
-              </div>
-            </div>  
-            <div class="col-lg-10">
-              <div class="row"> <!-- Header personnalisé -->
-                <div class="col-md-9">
-                  <h1>PROJECT INFORMATION</h1>
-                </div>
-                <div class="col-md-3">
-                  <div class="header_icons">
-                    <a class="header_a" href="UserPage.html?{{User}}">{{User}}
-                      <i class="fas fa-user-circle fa-2x"></i>
-                    </a>
-                    <a classe="header_a" href="Accueil.html"> 
-                      <i class="fas fa-home fa-2x"></i>
-                    </a>            
-                    <a class="header_a" href="/login.html" ng-click="logout()">
-                      <i class="fas fa-sign-out-alt fa-2x"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <form method="get">
-                <div class="row">
-                  <div class="col-lg-6"> <!-- Partie gauche -->
-                    <h2>Project Information</h2>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <label for="Project reference">Project reference: </label>
-                      </div>
-                      <div class="col-md-6">
-                        <input id="project_reference" type="text" ng-model="project_reference">
-                      </div>
-                    </div>
-                    <div>
-                      <label for="Description">Description: </label>
-                      <textarea id="Description" ng-model="description"></textarea>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <label for="Status">Status: </label> 
-                      </div>
-                      <div class="col-md-6">
-                        {{status}}
-                      </div>
-                    </div>
-                    <div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <label for="Internal Reference">Internal Reference: </label> 
-                        </div>
-                        <div class="col-md-6">
-                          {{internal_reference}}
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <label for="Expected_Delivery">Expected Delivery</label>
-                        </div>
-                        <div class="col-md-6">
-                          <input id="Expected_Delivery" type="text" ng-model="delivery">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6"> <!-- Partie droite -->
-                    <h2>Customer Information</h2>
-                    <div class="row"> 
-                      <div class="col-md-6">
-                        <label>Company: </label> 
-                      </div>
-                      <div class="col-md-6">
-                        {{company}}
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-6"> 
-                       <label>Contact</label> 
-                     </div>
-                     <div class="col-md-6">
-                       {{contact}}
-                     </div>
-                   </div> 
-
-                   <div class="row">
-                    <div class="col-md-6">
-                      <label>E-mail</label> 
-                    </div>
-                    <div class="col-md-6">
-                      {{email}}
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label>Phone number</label> 
-                    </div>
-                    <div class="col-md-6">
-                      {{phone_number}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <h2>Quantity</h2>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label for="Quantity" style="font-weight: bold">Quantity:</label>
-                    </div>
-                    <div class="col-md-6">
-                      <input id="Quantity" type="number" ng-model="quantity" onchange="angular.element(this).scope().lotSize()">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label for="Nbr Of Lot" style="font-weight: bold">Nbr Of Lot:</label>
-                    </div>
-                    <div class="col-md-6">
-                      <input id="Nbr Of Lot" type="number" ng-model="nbr_of_lot" onchange="angular.element(this).scope().lotSize()">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label for="Lot Size" style="font-weight: bold">Lot Size: </label> 
-                    </div>
-                    <div class="col-md-6">
-                      {{lot_size}}
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <label for="Default Label" style="font-weight: bold">Comments:</label>
-                    </div>
-                    <div class="col-md-6">
-                      <input id="Default Label" type="text" ng-model="default_label">
-                    </div>
-                  </div>
-                  <button class="add_quantity" ng-click="AddQuantity()">Add</button>
-                  <table>
-                    <thead>
-                      <th></th><th>Quantity</th><th>Lot Size</th><th>Nbr Of Lot</th><th>Comments</th>
-                    </thead>
-                    <tbody style="text-align: center;">
-                      <tr ng-repeat="x in displayQuantity">
-                        <td type="hidden">{{quantity_id}}</td>
-                        <td>{{x.quantity}}</td>
-                        <td>{{x.lot_size}}</td>
-                        <td>{{x.number_of_lot}}</td>
-                        <td>{{x.default_label}}</td>
-                        <td><button ng-click="deleteQuantity(x.quantity_id)">Delete</button></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="col-lg-6">
-                  <h2>Documents</h2>
-                  <p><input id="files" type="file" class="input_file" multiple/>
-                    <button class="button" ng-click="displayFileName()">Add</button></p>
-                    <table id="files_table">
-                      <thead>
-                        <th>File name</th><th>File type</th><th></th>
-                      </thead>
-                      <tr ng-repeat="file in files">                      
-                        <td>{{file.name}}</td><td>{{file.type}}</td><td><i class="fas fa-times" ng-click="deleteFile(file.name)"></i></td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </form>
+          <div class="col-lg-12">
+            <a href="UserPage.html?{{User}}">{{User}}
+            <img alt="user" src="./images/user.jpg" style="width: 50px; height: 50px;"></a>
+          </div>
+          <div class="col-lg-12">
+            <img alt="message" src="./images/message.jpg" style="width: 50px; height: 50px;">
+            <a href="Accueil.html"><img alt="home" src="./images/home.jpg" style="width: 50px; height: 50px;"></a>
+            <a href="/login.html" ng-click="logout()"><img alt="logout" src="./images/signout.jpg" style="width: 50px; height: 50px;"></a>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <p><big><big></big></big></p>
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-3" style="border: 2px solid black; border-radius: 6px;"> 
+        <legend> Menu </legend>
+        <div class="row">
+          <div><a href="DisplayAllProject.html">
+            <div class="col-lg-12">
+              <img style="width: 40px; height: 40px;" alt="Add" src="./images/history.jpg">
+              <big>Back</big>
+            </div>
+          </a></div>
+        </div>
+        <p></p>
+        <div class="row">
+          <div ng-click="saveChangement()"><a href="DisplayAllProject.html">
+            <div class="col-lg-12">
+              <img style="width: 40px; height: 40px;" alt="Save" src="./images/save.jpg">
+              <big>Save</big>
+            </div>
+          </a></div>
+        </div>
+        <p></p>
+      </div>  
+      <div class="col-lg-8">
+          <form method="get">
+            <div class="row">
+              <div class="col-lg-6">
+                <div>
+                  <label for="Project reference" style="font-weight: bold">Project reference: </label>
+                  <input id="project_reference" type="text" class="form-control" ng-model="project_reference">
+                </div>
+                <div>
+                  <label for="Description" style="font-weight: bold">Description: </label>
+                  <input id="Description" type="textarea" class="form-control" ng-model="description">
+                </div>
+                <div>
+                  <label for="Status" style="font-weight: bold">Status: </label> {{status}}
+                </div>
+                <div>
+                <div>
+                  <label for="Internal Reference" style="font-weight: bold">Internal Reference</label>
+                  <input id="Internal Reference" type="text" class="form-control" ng-model="internal_reference">
+                </div>
+                <div>
+                  <label for="Expected_Delivery" style="font-weight: bold">Expected Delivery</label>
+                  <input id="Expected_Delivery" type="text" class="form-control" ng-model="delivery">
+                </div>
+                <button ng-click="showQuantity()">Display Quantities</button>
+              </div>
+            </div>
+            <div class="col-lg-6" style="border-width: medium">
+              <p></p>
+              <div>
+                  <label for="Company" style="font-weight: bold">Company:</label> {{company}}
+                </div>
+              <div>
+                <label for="Contact" style="font-weight: bold">Contact:</label> {{contact}}
+              </div>
+              <div>
+                <label for="Email" style="font-weight: bold">Email:</label> {{email}}
+              </div>
+              <div>
+                <label for="Phone Number" style="font-weight: bold">Phone Number:</label> {{phone_number}}
+              </div>
+                <legend style="font-weight: bold">Documents</legend>
+                <p><input id="files" type="file" multiple/>
+                <button ng-click="displayFileName()">Add</button></p>
+                <label style="font-weight: bold">3Dscan files:</label>
+                <table>
+                <tr ng-repeat="scan in scans"> 
+                  <td>{{scan}}</td><td><button ng-click="deleteFile(scan, 1)">Delete</button></td>
+                </tr>
+                </table>
+                  <p><label style="font-weight: bold">Other files:</label>
+                  <table>
+                    <tr ng-repeat="file in files"> 
+                    <td>{{file}}</td><td><button ng-click="deleteFile(file, 2)">Delete</button></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </form>
+        </div>
     </div>
   </div>
   <div class="col-lg-12" style="text-align: right;">

@@ -15,44 +15,40 @@
 
           <div class="col-lg-2"> 
             <div class="menu_gauche">
-              <h2 class="menu_text"> MENU </h2>
-              <div class="row">
-                <div class="col-lg-3">
-                  <a id="returnButton" href=""><i class="far fa-caret-square-left fa-2x"></i></a>
-                </div>
-                <div class="col-lg-9">
-                  <a id="returnButton" href="">Back</a>
-                </div>
+              <h2 class="menu_text" style="padding-left: 5px;"> MENU </h2>
+              <div class="row col_menu" style="height: 50px;  border-bottom: 1px solid black;">
+                <a href="Accueil.html" class="col-lg-3" style="background-color: #9FA1B4;">
+                  <center style="padding-top: 8px;"><i class="far fa-caret-square-left fa-2x"></i></center>
+                </a>
+                <a href="Accueil.html" class="col-lg-9" style="background-color: #616481; padding-top: 8px;">
+                  <big >Back</big>
+                </a>
               </div>
-              <p></p>
-
-              <div class="row">
-                <div class="col-lg-3">
-                  <a id="saveButton" href="" ng-click="createNewFeature('save')"><i class="far fa-save fa-2x"></i></a>
-                </div>
-                <div class="col-lg-9">
-                  <a id="saveButton" href="" ng-click="createNewFeature('save')">Save</a>
-                </div>
+              <div class="row col_menu" style="height: 50px;  border-bottom: 1px solid black;">
+                <a ng-click="submitProject()" id="refToHome" href="Accueil.html" class="col-lg-3" style="background-color: #9FA1B4;">
+                  <center style="padding-top: 8px;"><i class="far fa-save fa-2x"></i></center>
+                </a>
+                <a ng-click="submitProject()" id="refToHome" href="Accueil.html" class="col-lg-9" style="background-color: #616481; padding-top: 8px;">
+                  <big >Save</big>
+                </a>
               </div>
-
-              <p></p>
-              <div class="row">
-                <div class="col-lg-3">
-                  <div ng-click="createNewFeature('add')"><a id="addNewFeature" href=""><i class="far fa-plus-square fa-2x"></i></a></div>
-                </div>
-                <div class="col-lg-9">
-                  <div ng-click="createNewFeature('add')"><a id="addNewFeature" href="">New feature</a></div>
-                </div>
+              <div class="row col_menu" style="height: 50px;  border-bottom: 1px solid black;">
+                <a ng-click="createNewFeature('add')"><a id="addNewFeature" href="" class="col-lg-3" style="background-color: #9FA1B4;">
+                  <center style="padding-top: 8px;"><i class="far fa-plus-square fa-2x"></i></center>
+                </a>
+                <a ng-click="createNewFeature('add')"><a id="addNewFeature" href="" class="col-lg-9" style="background-color: #616481; padding-top: 8px;">
+                  <big >New feature</big>
+                </a>
               </div>
-            </div>  
+            </div>
           </div>
 
           <div class="col-lg-10">
             <div class="row">
-              <div class="col-lg-9">
+              <div class="col-lg-9" style="padding-top: 12px;">
                 <h1>ADD A NEW FEATURE</h1>
               </div>
-              <div class="col-lg-3">
+              <div class="col-lg-3" style="padding-top: 12px;">
                 <div class="header_icons">
                   <a class="header_a" href="UserPage.html?{{User}}">{{User}}
                     <i class="fas fa-user-circle fa-2x"></i>
@@ -67,20 +63,35 @@
               </div>
             </div>
 
-            <form method="get">
-              <div class="row">
+              <form method="get">
+              <div class="row"> <!-- Ligne de content -->
+
+
                 <div class="col-lg-4">
                   <div class="row">
-                    <legend class="col-lg-12">Features</legend>
-                    <input id="feature_id" type="hidden" ng-model="feature_id">
+                  <input id="feature_id" type="hidden" ng-model="feature_id">
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Part reference">Part reference: </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
                       <input id="Part reference" type="text" class="form-control" ng-model="part_reference">
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Label">Label: </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12">
                       <input id="Label" type="text" class="form-control" ng-model="label">
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Attribution">Attribution: </label>
                       <select ng-model="attribution">
@@ -88,53 +99,71 @@
                         <option value="TARDY">TARDY</option>
                       </select>
                     </div>
-                    <div class="col-lg-12">
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3">
                       <label for="metal">Metal</label>
+                    </div>
+                    <div class="col-lg-3">
                       <input id="metal" type="checkbox" class="form-control" ng-model="metal">
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-3">
                       <label for="plastic">Plastic</label>
+                    </div>
+                    <div class="col-lg-3">
                       <input id="plastic" type="checkbox" class="form-control" ng-model="plastic">
                     </div>
-                    <div class="col-lg-12">
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4">
                       <label for="Component">Component: </label>
                       <input id="Component" type="text" class="form-control" ng-model="component">
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-4">
                       <label for="Compound">Compound: </label>
                       <input id="Compound" type="text" class="form-control" ng-model="compound">
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-4">
                       <label for="Ratio">Ratio: </label>
                       <input id="Ratio" type="number" class="form-control" ng-model="ratio">
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Material">Material: </label>
                       <input id="Material" type="text" class="form-control" ng-model="material">
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Heat Treatment">Heat Treatment: </label>
                       <input id="Heat Treatment" type="text" class="form-control" ng-model="heat_treatment">
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Surface Treatment">Surface Treatment: </label>
                       <input id="Surface Treatment" type="text" class="form-control" ng-model="surface_treatment">
                     </div>
-                    <div class="col-lg-12">
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3">
                       <label for="Width">Width: </label>
                       <input id="Width" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="width">
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-3">
                       <label for="Lenght">Lenght: </label>
                       <input id="Lenght" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="lenght">
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-3">
                       <label for="Height">Height: </label>
                       <input id="Height" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="height">
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-3">
                       <label for="Volume">Volume: {{volume}}</label>
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Manufacturing">Manufacturing: </label>
                       <select ng-model="manufacturing">
@@ -146,14 +175,20 @@
                         <option value="Assembly">Assembly</option>
                       </select>
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Tolerances">Tolerances: </label>
                       <input id="Tolerances" type="number" class="form-control" ng-model="tolerance">
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Rugosity">Rugosity: </label>
                       <input id="Rugosity" type="text" class="form-control" ng-model="rugosity">
                     </div>
+                  </div>
+                  <div class="row">
                     <div class="col-lg-12">
                       <label for="Comments">Comments: </label>
                       <input id="Comments" type="text" class="form-control" ng-model="comments">
@@ -161,6 +196,7 @@
                     </div>
                   </div>
                 </div>
+
 
                 <div class="col-lg-8">
                   <div class="row">
@@ -193,26 +229,30 @@
                     </div>
                   </div>
 
-
                   <div class="row">
                     <div class="col-lg-12">
                       <iframe id="display3D" src="" style="width: 140%; height: 500px;">
                       </iframe>
                     </div>
+                  </div>
 
+                  <div class="row">
                     <div class="col-lg-12">
                      <embed type="application/pdf"  id="pdfReader" src="https://disp-ds.univ-lyon2.fr/owncloud/s/BEWjZQPp1gGv9RX" style="width: 140%; height: 500px;">
                      </embed>
                    </div>
                  </div>
                </div>
-             </div>
-              </form>
-             </div>
-           </div>
+
+               </div><!--Fin ligne content-->
+            </form>
+           </div><!--Fin col10-->
+
          </div>
        </div>
-       <script src="./controller/Project.js"></script>
-       <script src="./controller/NewFeatures.controller.js"></script>
-     </body>
-     </html>
+     </div>
+   </div>
+   <script src="./controller/Project.js"></script>
+   <script src="./controller/NewFeatures.controller.js"></script>
+ </body>
+ </html>
