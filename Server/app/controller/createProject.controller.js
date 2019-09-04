@@ -22,6 +22,11 @@ app.controller('postNewProject', function($scope, $http, config) {
     $scope.default_label = "";
   })
 
+  $scope.deleteQuantity = function()
+  {
+    $http.delete('http://'+url+':'+port+'/deleteQuantityBackProject').then(function(response){})
+  }
+
   $scope.submitProject = function() 
   {
     if($scope.projectName != undefined && $scope.description != undefined && $scope.delivery != undefined && $scope.company != undefined){
