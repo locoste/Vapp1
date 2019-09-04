@@ -22,17 +22,17 @@ app.controller('DisplayFeatures', function($scope, $http, config) {
       $scope.attribution = response.data.features[0].attribution;
       $scope.component = response.data.features[0].component;
       $scope.compound = response.data.features[0].compound;
-      $scope.ratio = response.data.features[0].ratio;
+      $scope.ratio = parseInt(response.data.features[0].ratio);
       $scope.material = response.data.features[0].material;
-      $scope.heat_treatment = response.data.features[0].heat_treatment;
-      $scope.surface_treatment = response.data.features[0].surface_treatment;
-      $scope.width = response.data.features[0].width;
-      $scope.lenght = response.data.features[0].lenght;
-      $scope.height = response.data.features[0].height;
-      $scope.volume = response.data.features[0].volume;
+      $scope.heat_treatment = parseInt(response.data.features[0].heat_treatment);
+      $scope.surface_treatment = parseInt(response.data.features[0].surface_treatment);
+      $scope.width = parseInt(response.data.features[0].width);
+      $scope.lenght = parseInt(response.data.features[0].lenght);
+      $scope.height = parseInt(response.data.features[0].height);
+      $scope.volume = parseInt(response.data.features[0].volume);
       $scope.manufacturing = response.data.features[0].manufacturing;
-      $scope.tolerance = response.data.features[0].tolerance;
-      $scope.rugosity = response.data.features[0].rugosity;
+      $scope.tolerance = parseInt(response.data.features[0].tolerance);
+      $scope.rugosity = parseInt(response.data.features[0].rugosity);
       $scope.comments = response.data.features[0].comments;
     }
   });
