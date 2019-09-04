@@ -139,7 +139,10 @@ module.exports = function(app) {
     app.post('/newQuantity', contSession.authrequired, controller.newQuantityWithoutProject);
 
     // delete quantity with id
-    app.delete('/deleteQuantity/:quantityId', contSession.authrequired, controller.deleteQuantity) 
+    app.delete('/deleteQuantity/:quantityId', contSession.authrequired, controller.deleteQuantity)
+
+    // delete quantity if the project is not created
+    app.delete('/deleteQuantityBackProject', contSession.authrequired, controller.deleteQuantityBackProject);
 
     // get decision for a project
     app.get('/getDecision/:project', contSession.authrequired, controller.getDecision);

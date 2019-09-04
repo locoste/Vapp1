@@ -519,6 +519,13 @@ exports.deleteQuantity = function(req, res){
   })
 }
 
+exports.deleteQuantityBackProject = function(req, res){
+  var query = 'DELETE FROM quantity WHERE project is null'
+  odbcConnector(query, function(){
+    res.send('quantity deleted');
+  })
+}
+
 exports.getDecision = function(req, res) {
   var project = req.params.project;
   checkPermission(req, res, function(){
