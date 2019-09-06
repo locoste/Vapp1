@@ -10,8 +10,8 @@
 <body>
   <div ng-app="Project">
     <div ng-controller="ProjectSummary">
-      <div class="container-fluid">
-        <div class="row">
+      <div class="container-fluid" style="height:100vh;">
+        <div class="row" style="height:100%;">
 
 
 
@@ -50,11 +50,11 @@
               </div>
               <p class="sep_line"></p>
               <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                   <div class="row">
                     <h2>Project Information</h2>
-                    <div class="col-lg-12"><label style="font-weight: bold; font-size: 15pt">Project :</label> 63%  NEZ  DT51327  {{ProjectName}}</div>
-                    <div class="col-lg-12"><label style="font-weight: bold; font-size: 15pt">Customer :</label> APR {{Customer}}</div>
+                    <div class="col-lg-12"><label style="font-weight: bold; font-size: 15pt">Project :</label> {{ProjectName}}</div>
+                    <div class="col-lg-12"><label style="font-weight: bold; font-size: 15pt">Customer :</label> {{Customer}}</div>
                     <table>
                         <thead style="font-weight: bold; font-size: 15pt">
                           <th>Product Reference</th><th>Label</th><th>Rank</th>
@@ -71,7 +71,7 @@
                   </div>
                 </div>
 
-                <div class="col-lg-8">
+                <div class="col-lg-7">
                   <div class="row">
                     <div class="col-lg-6">
                       <h2>APR decision</h2>

@@ -11,8 +11,8 @@
   <div ng-app="Project">
     <div ng-controller="DisplayFeatures">
 
-    <div class="container-fluid">
-      <div class="row">
+      <div class="container-fluid">
+        <div class="row">
 
           <div class="col-lg-2"> 
             <div class="menu_gauche">
@@ -44,65 +44,74 @@
             </div>
           </div>
 
-        <div class="col-lg-10">
-          <form method="get">
-            <div class="row">
-              <div class="col-lg-9" style="padding-top: 12px;">
-                <h1>MODIFY FEATURE</h1>
-              </div>
-              <div class="col-lg-3" style="padding-top: 12px;">
-                <div class="header_icons">
-                  <a class="header_a" href="UserPage.html?{{User}}">{{User}}
-                    <i class="fas fa-user-circle fa-2x"></i>
-                  </a>
-                  <a classe="header_a" href="Accueil.html"> 
-                    <i class="fas fa-home fa-2x"></i>
-                  </a>            
-                  <a class="header_a" href="/login.html" ng-click="logout()">
-                    <i class="fas fa-sign-out-alt fa-2x"></i>
-                  </a>
+          <div class="col-lg-10">
+            <form method="get">
+              <div class="row">
+                <div class="col-lg-9" style="padding-top: 12px;">
+                  <h1>MODIFY FEATURE</h1>
+                </div>
+                <div class="col-lg-3" style="padding-top: 12px;">
+                  <div class="header_icons">
+                    <a class="header_a" href="UserPage.html?{{User}}">{{User}}
+                      <i class="fas fa-user-circle fa-2x"></i>
+                    </a>
+                    <a classe="header_a" href="Accueil.html"> 
+                      <i class="fas fa-home fa-2x"></i>
+                    </a>            
+                    <a class="header_a" href="/login.html" ng-click="logout()">
+                      <i class="fas fa-sign-out-alt fa-2x"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="row">
-                  <legend class="col-lg-12">Features</legend>
-                  <input id="feature_id" type="hidden" ng-model="feature_id">
-                  <div class="col-lg-12">
-                    <label for="Part reference">Part reference: </label>
-                    <input id="Part reference" type="text" class="form-control" ng-model="part_reference">
+              <div class="row">
+                <div class="col-lg-4">
+
+                  <div class="row">
+                    <input id="feature_id" type="hidden" ng-model="feature_id">
+                    <div class="col-lg-12">
+                      <label for="Part reference">Part reference: </label>
+                      <input id="Part reference" type="text" class="form-control" ng-model="part_reference">
+                    </div>
+                    <div class="col-lg-12">
+                      <label for="Label">Label: </label>
+                      <input id="Label" type="text" class="form-control" ng-model="label">
+                    </div>
+                    <div class="col-lg-12">
+                      <label for="Attribution">Attribution: </label>
+                      <select ng-model="attribution">
+                        <option value="APR">APR</option>
+                        <option value="TARDY">TARDY</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="col-lg-12">
-                    <label for="Label">Label: </label>
-                    <input id="Label" type="text" class="form-control" ng-model="label">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <label for="metal">metal</label>
+                    </div>
+                    <div class="col-lg-3">
+                      <input id="metal" type="checkbox" class="form-control" ng-model="metal">
+                    </div>
+                    <div class="col-lg-3">
+                      <label for="plastic">plastic</label>
+                    </div>
+                    <div class="col-lg-3">
+                      <input id="plastic" type="checkbox" class="form-control" ng-model="plastic">
+                    </div>
                   </div>
-                  <div class="col-lg-12">
-                    <label for="Attribution">Attribution: </label>
-                    <select ng-model="attribution">
-                      <option value="APR">APR</option>
-                      <option value="TARDY">TARDY</option>
-                    </select>
-                  </div>
-                  <div class="col-lg-12">
-                    <label for="metal">metal</label>
-                    <input id="metal" type="checkbox" class="form-control" ng-model="metal">
-                  </div>
-                  <div class="col-lg-12">
-                    <label for="plastic">plastic</label>
-                    <input id="plastic" type="checkbox" class="form-control" ng-model="plastic">
-                  </div>
-                  <div class="col-lg-12">
-                    <label for="Component">Component: </label>
-                    <input id="Component" type="text" class="form-control" ng-model="component">
-                  </div>
-                  <div class="col-lg-12">
-                    <label for="Compound">Compound: </label>
-                    <input id="Compound" type="text" class="form-control" ng-model="compound">
-                  </div>
-                  <div class="col-lg-12">
-                    <label for="Ratio">Ratio: </label>
-                    <input id="Ratio" type="number" class="form-control" ng-model="ratio">
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <label for="Component">Component: </label>
+                      <input id="Component" type="text" class="form-control" ng-model="component">
+                    </div>
+                    <div class="col-lg-4">
+                      <label for="Compound">Compound: </label>
+                      <input id="Compound" type="text" class="form-control" ng-model="compound">
+                    </div>
+                    <div class="col-lg-4">
+                      <label for="Ratio">Ratio: </label>
+                      <input id="Ratio" type="number" class="form-control" ng-model="ratio">
+                    </div>
                   </div>
                   <div class="col-lg-12">
                     <label for="Material">Material: </label>
@@ -116,20 +125,22 @@
                     <label for="Surface Treatment">Surface Treatment: </label>
                     <input id="Surface Treatment" type="text" class="form-control" ng-model="surface_treatment">
                   </div>
-                  <div class="col-lg-12">
-                    <label for="Width">Width: </label>
-                    <input id="Width" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="width">
-                  </div>
-                  <div class="col-lg-12">
-                    <label for="Lenght">Lenght: </label>
-                    <input id="Lenght" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="lenght">
-                  </div>
-                  <div class="col-lg-12">
-                    <label for="Height">Height: </label>
-                    <input id="Height" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="height">
-                  </div>
-                  <div class="col-lg-12">
-                    <label for="Volume">Volume: {{volume}}</label>
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <label for="Width">Width: </label>
+                      <input id="Width" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="width">
+                    </div>
+                    <div class="col-lg-3">
+                      <label for="Lenght">Lenght: </label>
+                      <input id="Lenght" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="lenght">
+                    </div>
+                    <div class="col-lg-3">
+                      <label for="Height">Height: </label>
+                      <input id="Height" type="number" class="form-control" onchange="angular.element(this).scope().CalculateVolume()" ng-model="height">
+                    </div>
+                    <div class="col-lg-3">
+                      <label for="Volume">Volume: {{volume}}</label>
+                    </div>
                   </div>
                   <div class="col-lg-12">
                     <label for="Manufacturing">Manufacturing: </label>
@@ -155,52 +166,54 @@
                     <input id="Comments" type="text" class="form-control" ng-model="comments">
                   </div>
                 </div>
-              </div>
-              <div class="col-lg-8">
-                <div class="row">
+
+                <div class="col-lg-8">
+                 <div class="row">
                   <div class="col-lg-6">
-                    <div class="row">
-                      <table class="col-lg-6">
-                        <thead><tr><th>files</th><th></th></tr></thead>
-                        <tbody>
-                          <tr ng-repeat="x in file">
-                            <td>{{x.document_name}}</td>
-                            <td><input type="button" value="select" ng-click="moveFile($index,1)"></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <table class="col-lg-6">
-                        <thead><tr><th>selected files</th><th></th></tr><th></th></thead>
-                        <tbody>
-                          <tr ng-repeat="x in selectedFile">
-                            <td>{{x.document_name}}</td>
-                            <td><input type="button" value="unselect" ng-click="moveFile($index,2)"></td>
-                            <td><input type="button" value="display" ng-click="displayFile($index)"></td>
-                          </tr>
-                        </tbody>
-                      </table>
+                    <table>
+                      <thead><tr><th>Uploaded Files</th><th></th></tr></thead>
+                      <tbody>
+                        <tr ng-repeat="x in file">
+                          <td>{{x.document_name}}</td>
+                          <td><input type="button" value="select" ng-click="moveFile($index,1)"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-lg-6">
+                    <table>
+                      <thead><tr><th>Selected Files</th><th></th></tr><th></th></thead>
+                      <tbody>
+                        <tr ng-repeat="x in selectedFile">
+                          <td>{{x.document_name}}</td>
+                          <td><input type="button" value="unselect" ng-click="moveFile($index,2)"></td>
+                          <td><input type="button" value="display" ng-click="displayFile($index)"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <div class="col-lg-12">
+                      <iframe id="display3D" src="" style="width: 140%; height: 500px;">
+                      </iframe>
                     </div>
-                  </div>
-                <div class="col-lg-12">
-                  <div class="col-lg-12">
-                    <iframe id="display3D" src="" style="width: 140%; height: 500px;">
-                    </iframe>
-                  </div>
-                  <div class="col-lg-12">
-                   <iframe id="pdfReader" src="" style="width: 140%; height: 500px;"></iframe>
+                    <div class="col-lg-12">
+                     <embed type="application/pdf"  id="pdfReader" src="https://disp-ds.univ-lyon2.fr/owncloud/s/BEWjZQPp1gGv9RX" style="width: 140%; height: 500px;">
+                     </embed>
+                   </div>
                  </div>
+
                </div>
              </div>
+
            </div>
-         </div>
-       </form>
+         </form>
+       </div>
+
      </div>
-     <div class="col-lg-12" style="text-align: right;">
-      Powered by <img alt="Vf-os" src="./images/vfos-logo-232x85.jpg" style="width: 100px; height: 36px;">
-    </div>
-  </div>
-</div>
-</div>
+   </div>
+ </div>
 </div>
 <script src="./controller/Project.js"></script>
 <script src="./controller/displayFeature.controller.js"></script>

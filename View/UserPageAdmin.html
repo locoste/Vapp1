@@ -10,8 +10,8 @@
 <body>
 	<div ng-app="Project">
 		<div ng-controller="UserPage">
-			<div class="container-fluid">
-				<div class="row">
+			<div class="container-fluid" style="height:100vh;">
+				<div class="row" style="height:100%;"> 
 					<div class="col-lg-2">	
 					<div class="menu_gauche">
 						<h2 class="menu_text" style="padding-left: 5px;">MENU</h2>
@@ -29,7 +29,7 @@
 						<form method="post">
 							<div class="row">
 								<div class="col-lg-9">
-									<h1>USER INFORMATION</h1>
+									<h1 style="padding-top: 12px;">USER INFORMATION</h1>
 								</div>
 								<div class="col-lg-3">
 									<div class="header_icons">
@@ -48,17 +48,17 @@
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="row">
-										<legend>Customer: </legend>
+										<h2>Customer </h2>
 										<div class="col-lg-12">
 											<label for="Company">Company: {{company}}</label>
 										</div>
 										<div class="col-lg-12">
-											<label style="font-weight: bold">login: </label>{{login}}
+											<label style="font-weight: bold">Login: </label>{{login}}
 										</div>
 										<div class="col-lg-12">
 											<label style="font-weight: bold">Password: </label> {{password}}
 										</div>
-										<legend>Contact:</legend>
+										<h2>Contact:</h2>
 										<div class="col-lg-12">
 											<label style="font-weight: bold">Contact: </label>{{contact}}
 										</div>
