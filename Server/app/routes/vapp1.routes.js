@@ -64,7 +64,7 @@ module.exports = function(app) {
     // log out
     app.post('/logout', contSession.logoutUser);
 
-    // display all login controller
+    // display login controller
     app.get('/controller/:script', controller.getController);
 
     // display all login page images

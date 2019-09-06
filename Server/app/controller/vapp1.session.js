@@ -15,6 +15,7 @@ passport.use(new LocalStrategy(
 		var query = 'SELECT * FROM users;'	
 		console.log('inside strategy')
 		odbcConnector(query, function(result){
+			console.log(result)
 			for (var i = 0; i < result.length; i++){
 				if(result[i].login==email && result[i].password==password){
 					var user = '{"id":' + result[i].user_id + ',"email":"' + result[i].email + '", "login":"' + result[i].login + '", "password":"' + result[i].password + '", "role":"'+result[i].role+'"}';

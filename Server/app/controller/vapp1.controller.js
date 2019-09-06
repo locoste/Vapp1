@@ -332,7 +332,7 @@ exports.getCompanies = function (req, res) {
 exports.getCustomerInformation = function(req, res) {
   var company = req.params.company;
   var user = req.user.customer
-  query = 'SELECT contact, email, phone_number FROM customer WHERE customer_id = "' + user + '";';
+  query = 'SELECT contact, email, phone_number FROM customer WHERE company = "' + company + '";';
   odbcConnector(query, function(result) {
     var row = '{"customer" : { "contact": "' + result[0].contact + '", '
     row = row + '"email": "' + result[0].email + '", '
