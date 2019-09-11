@@ -25,7 +25,7 @@ exports.getUserCompany = function(req, res){
 
 exports.favicon = function(req, res){
   res.writeHead(200, {"Content-Type": "image/png"});
-  fs.readFile('../images/favicon.png', function(err, image){
+  fs.readFile('./images/favicon.png', function(err, image){
     if(err){
       throw err;
     }
@@ -54,7 +54,7 @@ exports.displayPage = function(req, res) {
   }
   res.writeHead(200, {"Content-Type": "text/html"});
   console.log(page)
-  fs.readFile('../View/'+page, function(err, html){
+  fs.readFile('./View/'+page, function(err, html){
     if(err){  
       throw err;
     }
@@ -66,7 +66,7 @@ exports.displayPage = function(req, res) {
 exports.getCssFiles = function(req, res){
   var file = req.params.file;
   res.writeHead(200, {"Content-Type": "text/css"});
-  fs.readFile('../View/css/'+file, function(err, css){
+  fs.readFile('./View/css/'+file, function(err, css){
     if(err){  
       throw err;
     }
@@ -78,7 +78,7 @@ exports.getCssFiles = function(req, res){
 exports.displayLoginPage = function(req, res) {
   var page = req.params.page;
   res.writeHead(200, {"Content-Type": "text/html"});
-  fs.readFile('../View/login.html', function(err, html){
+  fs.readFile('./View/login.html', function(err, html){
     if(err){
       throw err;
     }
@@ -90,7 +90,7 @@ exports.displayLoginPage = function(req, res) {
 exports.createUserPage = function(req, res) {
   var page = req.params.page;
   res.writeHead(200, {"Content-Type": "text/html"});
-  fs.readFile('../View/CreateUser.html', function(err, html){
+  fs.readFile('./View/CreateUser.html', function(err, html){
     if(err){
       throw err;
     }
@@ -102,7 +102,7 @@ exports.createUserPage = function(req, res) {
 exports.readpdf = function(req, res) {
   var page = req.params.page;
   res.writeHead(200, {"Content-Type": "text/html"});
-  fs.readFile('../ressources/'+page, function(err, html){
+  fs.readFile('./ressources/'+page, function(err, html){
     if(err){
       throw err;
     }
@@ -114,7 +114,7 @@ exports.readpdf = function(req, res) {
 exports.get3DScript = function(req, res) {
   var script = req.params.script;
   res.writeHead(200, {"Content-Type": "text/plain"});
-  fs.readFile('../js/'+script, function(err, js){
+  fs.readFile('./js/'+script, function(err, js){
     if(err){
       throw err;
     }
@@ -127,7 +127,7 @@ exports.getController = function(req, res) {
   var script = req.params.script;
   res.writeHead(200, {"Content-Type": "text/plain"});
   if (script == 'Project.js'){
-    fs.readFile('./app/'+script, function(err, js){
+    fs.readFile('./Server/app/'+script, function(err, js){
       if(err){
         throw err;
       }
@@ -136,7 +136,7 @@ exports.getController = function(req, res) {
     })
   }
   else {
-    fs.readFile('./app/controller/'+script, function(err, js){
+    fs.readFile('./Server/app/controller/'+script, function(err, js){
       if(err){
         throw err;
       }
@@ -149,7 +149,7 @@ exports.getController = function(req, res) {
 exports.displayImages = function(req, res) {
   var image = req.params.image;
   res.writeHead(200, {"Content-Type": "image/jpg"});
-  fs.readFile('../images/'+image, function(err, image){
+  fs.readFile('./images/'+image, function(err, image){
     if(err){
       throw err;
     }
@@ -185,7 +185,7 @@ exports.findAllProject = function(req, res) {
   var user = req.session.passport.user;
   var role = req.user.role
   if(role=='admin' || role=='APR' || role=='TARDY'){
-    var query = 'SELECT project_name, project_description, C.company, expected_delivery, creation_date FROM Project P join Customer C on P.customer = C.customer_id JOIN users U on U.customer=C.customer_id ORDER BY creation_date, expected_delivery DESC'
+    var query = 'SELECT project_name, project_description, C.company, expected_delivery, creation_date FROM Project P join Customer C on P.customer = C.customer_id ORDER BY creation_date, expected_delivery DESC'
   } 
   else if(role=='guest'){
     var query = 'SELECT project_name, project_description, C.company, expected_delivery, creation_date FROM Project P join Customer C on P.customer = C.customer_id JOIN users U on U.customer=C.customer_id WHERE user_id=' + user + ' ORDER BY creation_date, expected_delivery;'
