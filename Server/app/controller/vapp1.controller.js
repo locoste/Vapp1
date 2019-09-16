@@ -377,6 +377,7 @@ exports.createNewProject = function(req, res) {
                       odbcConnector(query, function(resultQuantity){
                         var jsonresult = '{"project":'+resultidproject[0].projectid+',"dcme_folder":"'+response+'"}'
                         sendEmail('New vf-OS project Submitted!', 'A new project has been submitted by '+project.company+ '. Please check on the application to see more details')
+                        console.log(jsonresult);
                         res.write(jsonresult);
                         res.end();
                       })
@@ -1012,8 +1013,8 @@ function odbcConnector(request, callback){
   try{
     const id = {
       host : odbc_url,
-      //path: '/odbc/v1/api/odbcModels/requestdb?request='+escape(request),
-      path: '/api/odbcModels/requestdb?request='+escape(request),
+      path: '/odbc/v1/api/odbcModels/requestdb?request='+escape(request),
+      //path: '/api/odbcModels/requestdb?request='+escape(request),
       port: odbc_port,
       method: 'GET',
       headers: {
@@ -1033,7 +1034,7 @@ function odbcConnector(request, callback){
       })
     }
 
-    const idReq = http.request(id, idCallback);
+    const idReq = https.request(id, idCallback);
     idReq.end();
   }
   catch(e){

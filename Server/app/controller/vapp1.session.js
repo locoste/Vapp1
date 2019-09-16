@@ -94,8 +94,8 @@ exports.logoutUser = function(req, res) {
 	function odbcConnector(request, callback){
 		const id = {
 			host : odbc_url,
-			//path: '/odbc/v1/api/odbcModels/requestdb?request='+escape(request),
-			path: '/api/odbcModels/requestdb?request='+escape(request),
+			path: '/odbc/v1/api/odbcModels/requestdb?request='+escape(request),
+			//path: '/api/odbcModels/requestdb?request='+escape(request),
 			port: odbc_port,
 			method: 'GET',
 			headers: {
@@ -119,6 +119,6 @@ exports.logoutUser = function(req, res) {
 			});
 		}
 
-		const idReq = http.request(id, idCallback);
+		const idReq = https.request(id, idCallback);
 		idReq.end();
 	}
