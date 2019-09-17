@@ -29,8 +29,7 @@ app.controller('postNewProject', function($scope, $http, config) {
     })
   }
 
-  $scope.submitProject = function() 
-  {
+  $scope.submitProject = function(){
     if($scope.projectName != undefined && $scope.description != undefined && $scope.delivery != undefined && $scope.company != undefined){
     data = '{"project": {"projectName": "' + $scope.projectName + '","projectDescription": "'+ $scope.description +'","expectedDelivery": "'+ $scope.delivery +'","status": "Submited","customer": "'+ $scope.company +'"  }}';
     $http.post('http://'+url+':'+port+'/newProject', data).then(function(response) {
@@ -46,6 +45,7 @@ app.controller('postNewProject', function($scope, $http, config) {
         }
 
         if($scope.files != undefined){
+          console.log($scope.files)
           for(j=0; j<$scope.files.length; j++){
             console.log($scope.files[j])
             uploadDCME($scope.files[j], response.data.project, response.data.dcme_folder);
@@ -62,6 +62,46 @@ app.controller('postNewProject', function($scope, $http, config) {
   } else {
     alert("You have not fill all field");
   }
+  }
+
+   function upload3DScan(file, project){
+    var fd = new FormData();
+    fd.append('file', file);
+    var uploadUrl = 'https://'+scan_url+':'+scan_port+'/3dscan/v1/FitmanGL/rest/post/upload';
+    $http.post(uploadUrl, fd, {
+      transformRequest: angular.identity,
+      headers: {'Content-Type': undefined, 'Accept':'application/xml'}
+    }).then(function(){
+      var body = '{"document_name":"'+file.name+'","type":"3DScan"}'
+      $http.post('http://'+url+':'+port+'/newFile/'+project, body).then(function(response){
+        console.log(file.name + ' is uploaded!!')
+      })
+    });
+  }
+
+  function uploadDCME(file, project, destination){
+    console.log(file)
+    $http.get('http://'+url+':'+port+'/getTicket').then(function(response){
+      var ticket = response.data
+
+      // uploading file
+      var form = new FormData();
+      form.append('filedata', file);
+      form.append('destination','workspace://SpacesStore/'+destination)
+      var uploadDCMEUrl = 'http://'+alf_url+':'+alf_port+'/alfresco/service/api/upload?alf_ticket='+ticket;
+  
+      $http.post(uploadDCMEUrl, form, {
+        transformRequest: angular.identity,
+        headers: {'Content-Type': undefined}
+      }).then(function(responseNode){
+        console.log(responseNode.data.nodeRef);
+        body='{"document_name": "'+ file.name +'", "type":"DCME", "nodeRef":"'+responseNode.data.nodeRef+'"}'
+        $http.post('http://'+url+':'+port+'/newFile/' + project, body).then(function(response){
+          alert(file.name + " documents saved!!!");
+        })
+      })
+      
+    })
   }
 
 
@@ -123,44 +163,5 @@ app.controller('postNewProject', function($scope, $http, config) {
     })
   }
   
-  function upload3DScan(file, project){
-    var fd = new FormData();
-    fd.append('file', file);
-    var uploadUrl = 'https://'+scan_url+':'+scan_port+'/3dscan/v1/FitmanGL/rest/post/upload';
-    $http.post(uploadUrl, fd, {
-      transformRequest: angular.identity,
-      headers: {'Content-Type': undefined, 'Accept':'application/xml'}
-    }).then(function(){
-      var body = '{"document_name":"'+file.name+'","type":"3DScan"}'
-      $http.post('http://'+url+':'+port+'/newFile/'+project, body).then(function(response){
-        console.log(file.name + ' is uploaded!!')
-      })
-    });
-  }
-
-  function uploadDCME(file, project, destination){
-    console.log(file)
-    $http.get('http://'+url+':'+port+'/getTicket').then(function(response){
-      var ticket = response.data
-
-      // uploading file
-      var form = new FormData();
-      form.append('filedata', file);
-      form.append('destination','workspace://SpacesStore/'+destination)
-      var uploadDCMEUrl = 'http://'+alf_url+':'+alf_port+'/alfresco/service/api/upload?alf_ticket='+ticket;
-
-      $http.post(uploadDCMEUrl, form, {
-        transformRequest: angular.identity,
-        headers: {'Content-Type': undefined}
-      }).then(function(responseNode){
-        console.log(responseNode.data.nodeRef);
-        body='{"document_name": "'+ file.name +'", "type":"DCME", "nodeRef":"'+responseNode.data.nodeRef+'"}'
-        body='{"document_name": "'+ file.name +'", "type":"DCME", "nodeRef":"workspace://SpacesStore/ef77efc3-8484-40d3-ac4b-c7648f518264"}'
-        $http.post('http://'+url+':'+port+'/newFile/' + project, body).then(function(response){
-          console.log(file.name + " documents saved!!!");
-        })
-      })
-      
-    })
-  }
+ 
 });
