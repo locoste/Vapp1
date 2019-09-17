@@ -24,7 +24,9 @@ app.controller('postNewProject', function($scope, $http, config) {
 
   $scope.deleteBackQuantity = function()
   {
-    $http.delete('http://'+url+':'+port+'/deleteQuantityBackProject').then(function(response){})
+    $http.delete('http://'+url+':'+port+'/deleteQuantityBackProject').then(function(response){
+      window.location.assign('http://'+url+':'+port+'/Vapp1/Accueil.html')
+    })
   }
 
   $scope.submitProject = function() 
@@ -51,7 +53,7 @@ app.controller('postNewProject', function($scope, $http, config) {
         }
         alert('project submitted!')
         window.location.assign('http://'+url+':'+port+'/Vapp1/Accueil.html')
-        document.getElementById('refToHome').href="Accueil.html";
+        //document.getElementById('refToHome').href="Accueil.html";
       } else {
         alert(result)
         window.location.assign('http://'+url+':'+port+'/Vapp1/Accueil.html')

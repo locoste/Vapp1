@@ -6,7 +6,7 @@ app.controller('NewFeatures', function($scope, $http, config) {
   const scan_url = config.scan_url;
   const scan_port = config.scan_port;
   var project = getProject();
-  document.getElementById("returnButton").href = "DisplayProject.html?"+project;
+ 
   $scope.file = [];
   $scope.selectedFile = [];
   var iframePath = './index.html';
@@ -84,8 +84,10 @@ app.controller('NewFeatures', function($scope, $http, config) {
       $http.get('http://'+url+':'+port+'/getFileIdProject/'+file+'/'+project).then(function(response){
         console.log(response.data)
         var storeType = response.data[0].adress_id.substr(0,9);
-        var storeId = response.data[0].adress_id.substr(22);
-        document.getElementById("pdfReader").src = 'http://'+scan_url+':'+scan_port+'dcme/v1/alfresco/s/api/node/workspace/SpacesStore'+storeId+'/content?a=false&alf_ticket='+ticket
+        var storeId = response.data[0].adress_id.substr(23);
+
+        console.log('http://'+alf_url+':'+alf_port+'dcme/v1/alfresco/s/api/node/workspace/SpacesStore'+storeId+'/content?a=false&alf_ticket='+ticket)
+        document.getElementById("pdfReader").src = 'http://'+alf_url+':'+alf_port+'/alfresco/s/api/node/workspace/SpacesStore'+storeId+'/content?a=false&alf_ticket='+ticket
       })
     })
   }

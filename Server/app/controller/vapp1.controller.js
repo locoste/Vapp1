@@ -357,16 +357,27 @@ exports.createNewProject = function(req, res) {
         odbcConnector(queryRef, function(resultComp){
           console.log('3')
           var internalRef = resultComp[0].company.substr(0,3).toUpperCase() + project.projectName.substr(0,2).toUpperCase() + '-'+ resultComp[0].nb
-          query = 'INSERT INTO project(project_name, project_description, customer, status, expected_delivery, decision, creation_date, internal_reference) VALUES ("' + project.projectName + '","' + project.projectDescription + '", '+user+',"'+ project.status+'", "'+dateFormat(project.expectedDelivery, "isoDate")+'", (SELECT max(decision_id) FROM decision), "'+dateFormat(new Date(), "isoDate")+'", "'+internalRef+'");'
+          query = 'INSERT INTO project(project_name, project_description, customer, status, expected_delivery, decision, creation_date, internal_reference, dcme_folder) VALUES ("' + project.projectName + '","' + project.projectDescription + '", '+user+',"'+ project.status+'", "'+dateFormat(project.expectedDelivery, "isoDate")+'", (SELECT max(decision_id) FROM decision), "'+dateFormat(new Date(), "isoDate")+'", "'+internalRef+'","d4c25920-bd8f-484c-9e54-7f42150b84b3");'
           odbcConnector(query, function() {
-            console.log('4')
+            var query = "SELECT project_id, dcme_folder from project where project_id=(select max(project_id) from project)"
+            odbcConnector(query, function(resultDcme){
+              var queryQuantity = 'UPDATE product_quantity SET project='+resultDcme[0].project_id+' WHERE project is null'
+              odbcConnector(queryQuantity, function(){
+                var jsonresult = '{"project":'+resultDcme[0].project_id+',"dcme_folder":"'+resultDcme[0].dcme_folder+'"}'
+              //sendEmail('New vf-OS project Submitted!', 'A new project has been submitted by '+project.company+ '. Please check on the application to see more details')
+              res.write(jsonresult);
+              res.end();
+            })
+          })
+            /*console.log('4')
             var folder = '{"managers":[{"manager":"Manager1"}],"folders":[{"Eid":"","name":"'+project.customer+'","subfolders":[{"Did":"","name":"'+project.projectName+'"}]}]}'
-            DCMEfolder(folder, function(){
+            //DCMEfolder(folder, function(){
               console.log('5')
               var idDcmeQuery = 'SELECT id_dcme FROM customer WHERE customer_id = ' + user
               odbcConnector(idDcmeQuery, function(result){
+                console.log(result)
                 console.log('6')
-                getIdFolder(project.projectName, result[0].id_dcme, function(response){
+                //getIdFolder(project.projectName, result[0].id_dcme, function(response){
                   console.log('7')
                   var insertQuery = 'UPDATE project SET dcme_folder = "' + response + '" WHERE project_name="'+project.projectName+'"'
                   odbcConnector(insertQuery, function(){
@@ -383,8 +394,8 @@ exports.createNewProject = function(req, res) {
                     });
                   });
                 });
-              });
-            });
+              });*/
+            //});
           })
         })
       })
