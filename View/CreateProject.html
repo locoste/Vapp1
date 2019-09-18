@@ -218,18 +218,30 @@
 							</div>
 							<div class="col-lg-6">
 								<h2>Documents</h2>
-								<p><input id="files" type="file" multiple/>
-									<button class="butn" ng-click="displayFileName()">Add</button></p>
+											
+                    <div class="row justify-content-center">
+                      <div class="col-lg-7 offset-lg-1">
+                        <p><input id="files" type="file" class="input_file" multiple/></p>
+                      </div>
+                      <div class="col-lg-3 offset-lg-1">
+                        <button class="butn" ng-click="displayFileName()">Add</button>
+                      </div>
+                      <div class="col-lg-10">
+                        <table id="files_table">
+                          <thead>
+                            <th>File name</th><th>File type</th><th></th>
+                          </thead>
+                          <tr ng-repeat="file in files">                      
+                            <td>{{file.name}}</td><td>{{file.type}}</td><td><i class="fas fa-times" ng-click="deleteFile(scan, 1)"></i></td>
+                          </tr>
+                        </table>
+                      </div>
 
-									<p><label style="font-weight: bold">3Dscan files:</label>
-										<p ng-repeat="scan in scans">	
-											{{scan.name}}
-										</p></p>
-										<p><label style="font-weight: bold">Other files:</label>
-											<p ng-repeat="file in files">	
-												{{file.name}}
-											</p></p>
+                    </div>
 										</div>
+
+
+
 									</div>
 												<!--<div class="col-lg-6">
 													<button ng-click="showQuantity()">Add quantities for project</button>
