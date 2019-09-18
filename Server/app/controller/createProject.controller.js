@@ -56,7 +56,6 @@ app.controller('postNewProject', function($scope, $http, config) {
         //document.getElementById('refToHome').href="Accueil.html";
       } else {
         alert(result)
-        window.location.assign('http://'+url+':'+port+'/Vapp1/Accueil.html')
       }
     });
   } else {

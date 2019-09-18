@@ -87,7 +87,7 @@ app.controller('NewFeatures', function($scope, $http, config) {
         var storeId = response.data[0].adress_id.substr(23);
 
         console.log('http://'+alf_url+':'+alf_port+'dcme/v1/alfresco/s/api/node/workspace/SpacesStore'+storeId+'/content?a=false&alf_ticket='+ticket)
-        document.getElementById("pdfReader").src = 'http://'+alf_url+':'+alf_port+'/alfresco/s/api/node/workspace/SpacesStore'+storeId+'/content?a=false&alf_ticket='+ticket
+        document.getElementById("pdfReader").src = 'http://'+alf_url+':'+alf_port+'/alfresco/s/api/node/workspace/SpacesStore/'+storeId+'/content?a=false&alf_ticket='+ticket
       })
     })
   }
