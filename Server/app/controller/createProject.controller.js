@@ -111,11 +111,8 @@ app.controller('postNewProject', function($scope, $http, config) {
     for (i=0; i<document.getElementById('files').files.length; i++){
       var str = document.getElementById('files').files[i].name
       var n = str.indexOf(".");
-      if (str.substr(n+1) == "stp" || str.substr(n+1)=="step" || str.substr(n+1)=="stl"){
-        scan.push(document.getElementById('files').files[i])
-      } else {
-        files.push(document.getElementById('files').files[i])
-      }
+
+        files.push({name: document.getElementById('files').files[i].name, type: str.substr(n+1).toUpperCase()})
     }
     $scope.scans = scan;
     $scope.files = files;
